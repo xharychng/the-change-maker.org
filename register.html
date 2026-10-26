@@ -8,14 +8,19 @@
   <link rel="canonical" href="https://the-change-makers.org/register.html">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400..600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400..900&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <script>document.documentElement.classList.add("js");setTimeout(function(){if(!window.gsap){var c=document.querySelector(".curtain");if(c){c.style.transition="transform .8s";c.style.transform="translateY(-101%)";}}},2500);</script>
+
 </head>
 <body>
+  <div class="curtain" aria-hidden="true"><div class="curtain-mark">CM</div><div class="curtain-name">The Change Makers</div></div>
+  <div class="cursor" aria-hidden="true"></div><div class="cursor-dot" aria-hidden="true"></div>
+  <div class="progress" aria-hidden="true"></div>
 
   <header class="nav">
     <div class="wrap">
-      <a class="brand" href="index.html">The Change <span>Makers</span></a>
+      <a class="brand" href="index.html"><span class="mark">CM</span>The Change Makers</a>
       <button class="menu-btn" aria-expanded="false" aria-controls="menu">Menu</button>
       <ul id="menu">
         <li><a href="index.html">Home</a></li>
@@ -27,6 +32,7 @@
 
   <main>
     <section class="hero page-hero" style="min-height:60svh">
+      <div class="aurora" aria-hidden="true"><span class="a1"></span><span class="a2"></span><span class="a3"></span></div>
       <div class="wrap">
         <h1 class="hero-sub" data-split>Join CM MUN</h1>
         <p class="lead">There are three ways to take part. Check who can apply and the deadline for each, then fill in that position's form.</p>
@@ -48,7 +54,8 @@
         -->
 
         <!-- ===== DEPUTY SECRETARY-GENERAL ===== -->
-        <article class="role" id="dsg" data-deadline="2026-12-15T23:59:00+08:00">
+        <article class="role spot" id="dsg" data-deadline="2026-12-15T23:59:00+08:00">
+          <span class="big-num" aria-hidden="true">I</span>
           <div>
             <span class="status">Applications open</span>
             <h2>Deputy Secretary&#8209;General</h2>
@@ -75,7 +82,8 @@
         </article>
 
         <!-- ===== CHAIRS ===== -->
-        <article class="role" id="chairs" data-deadline="2027-01-15T23:59:00+08:00">
+        <article class="role spot" id="chairs" data-deadline="2027-01-15T23:59:00+08:00">
+          <span class="big-num" aria-hidden="true">II</span>
           <div>
             <span class="status">Applications open</span>
             <h2>Chairs</h2>
@@ -102,7 +110,8 @@
         </article>
 
         <!-- ===== DELEGATES ===== -->
-        <article class="role" id="delegates" data-deadline="2027-02-15T23:59:00+08:00">
+        <article class="role spot" id="delegates" data-deadline="2027-02-15T23:59:00+08:00">
+          <span class="big-num" aria-hidden="true">III</span>
           <div>
             <span class="status">Applications open</span>
             <h2>Delegates</h2>
@@ -132,13 +141,18 @@
 
   <footer>
     <div class="wrap">
-      <a class="brand" href="index.html">The Change <span>Makers</span></a>
-      <nav aria-label="Footer">
-        <a href="index.html">Home</a>
-        <a href="conference.html">Conference</a>
-        <a href="mailto:contact@the-change-makers.org">Email us</a>
-        <a href="https://instagram.com/" target="_blank" rel="noopener">Instagram</a>
-      </nav>
+      <div class="top">
+        <a class="brand" href="index.html"><span class="mark">CM</span>The Change Makers</a>
+        <nav aria-label="Footer">
+          <a href="index.html">Home</a>
+          <a href="conference.html">Conference</a>
+          <a href="register.html">Register</a>
+          <!-- EDIT: your email and Instagram -->
+          <a href="mailto:contact@the-change-makers.org">Email us</a>
+          <a href="https://instagram.com/" target="_blank" rel="noopener">Instagram</a>
+        </nav>
+      </div>
+      <div class="wordmark" aria-hidden="true">Change <span>Makers</span></div>
       <small>© <span data-year>2026</span> The Change Makers</small>
     </div>
   </footer>
