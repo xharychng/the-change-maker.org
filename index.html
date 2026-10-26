@@ -3,26 +3,153 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>The Change Maker</title>
-  <meta name="description" content="The Change Maker — a new initiative launching soon.">
-  <link rel="canonical" href="https://the-change-maker.org/">
-  <style>
-    :root { --bg:#0f172a; --fg:#f8fafc; --muted:#94a3b8; --accent:#34d399; }
-    * { box-sizing:border-box; margin:0; }
-    body {
-      min-height:100vh; display:grid; place-items:center; padding:24px;
-      background:var(--bg); color:var(--fg);
-      font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; text-align:center;
-    }
-    h1 { font-size:clamp(2.2rem,7vw,4rem); letter-spacing:-0.02em; }
-    h1 span { color:var(--accent); }
-    p { color:var(--muted); margin-top:16px; font-size:1.1rem; }
-  </style>
+  <title>The Change Makers</title>
+  <!-- EDIT: one sentence Google shows under your link -->
+  <meta name="description" content="The Change Makers is a student-led organization running CM MUN, a Model United Nations conference for young leaders.">
+  <link rel="canonical" href="https://the-change-makers.org/">
+  <meta property="og:title" content="The Change Makers">
+  <meta property="og:description" content="Student-led organization and home of CM MUN.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400..600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+  <header class="nav">
+    <div class="wrap">
+      <a class="brand" href="index.html">The Change <span>Makers</span></a>
+      <button class="menu-btn" aria-expanded="false" aria-controls="menu">Menu</button>
+      <ul id="menu">
+        <li><a href="index.html" aria-current="page">Home</a></li>
+        <li><a href="conference.html">Conference</a></li>
+        <li><a href="register.html">Register</a></li>
+      </ul>
+    </div>
+  </header>
+
   <main>
-    <h1>The <span>Change</span> Maker</h1>
-    <p>Something new is on the way. Check back soon.</p>
+    <!-- ===== HERO ===== -->
+    <section class="hero">
+      <div class="globe" aria-hidden="true">
+        <svg viewBox="0 0 500 500">
+          <g class="spin">
+            <circle cx="250" cy="250" r="240"/>
+            <ellipse cx="250" cy="250" rx="180" ry="240"/>
+            <ellipse cx="250" cy="250" rx="120" ry="240"/>
+            <ellipse cx="250" cy="250" rx="60" ry="240"/>
+            <line x1="250" y1="10" x2="250" y2="490"/>
+            <ellipse cx="250" cy="250" rx="240" ry="30"/>
+            <ellipse cx="250" cy="170" rx="226" ry="26"/>
+            <ellipse cx="250" cy="330" rx="226" ry="26"/>
+            <ellipse cx="250" cy="90" rx="179" ry="20"/>
+            <ellipse cx="250" cy="410" rx="179" ry="20"/>
+            <ellipse cx="250" cy="30" rx="96" ry="11"/>
+            <ellipse cx="250" cy="470" rx="96" ry="11"/>
+          </g>
+        </svg>
+      </div>
+      <div class="wrap">
+        <h1 data-split>The Change Makers</h1>
+        <!-- EDIT: one-line tagline -->
+        <p class="lead">Students who debate the world's hardest questions, and then go do something about them. <span class="ph">[Edit this tagline]</span></p>
+        <div class="actions">
+          <a class="btn btn-solid" href="conference.html">Explore CM MUN</a>
+          <a class="btn btn-ghost" href="register.html">Register</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== MISSION ===== -->
+    <section class="light" id="mission">
+      <div class="wrap split">
+        <h2 data-reveal>Our mission</h2>
+        <div class="prose">
+          <!-- EDIT: who you are, when you started, why you exist -->
+          <p class="lead"><span class="ph">[Mission statement: one or two sentences on why The Change Makers exists.]</span></p>
+          <p class="muted"><span class="ph">[Who we are: when and where you started, who is involved, and what makes you different. Two to four sentences works best.]</span></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== WHAT WE DO ===== -->
+    <section id="what-we-do">
+      <div class="wrap">
+        <h2 data-reveal>What we do</h2>
+        <p class="lead">Three things sit at the center of everything we run.</p>
+        <div class="rows">
+          <!-- EDIT: rename and describe each pillar; copy a .row block to add more -->
+          <div class="row">
+            <h3>Model United Nations</h3>
+            <p class="muted"><span class="ph">[What your MUN program looks like: conferences, training sessions, who joins.]</span></p>
+          </div>
+          <div class="row">
+            <h3>Leadership</h3>
+            <p class="muted"><span class="ph">[How members lead: chairing, organizing, running the secretariat.]</span></p>
+          </div>
+          <div class="row">
+            <h3>Community impact</h3>
+            <p class="muted"><span class="ph">[Projects or service work beyond the conference room.]</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== MEMBERS ===== -->
+    <section class="light" id="members">
+      <div class="wrap">
+        <h2 data-reveal>Meet the team</h2>
+        <p class="lead">The people behind The Change Makers and CM MUN.</p>
+        <!-- EDIT: replace initials with <img src="photos/name.jpg" alt="Name"> and fill in names/roles; copy a .member block to add people -->
+        <div class="team">
+          <div class="member"><div class="portrait">A</div><h3><span class="ph">[Name]</span></h3><p class="muted">Founder &amp; President</p></div>
+          <div class="member"><div class="portrait">B</div><h3><span class="ph">[Name]</span></h3><p class="muted">Secretary-General</p></div>
+          <div class="member"><div class="portrait">C</div><h3><span class="ph">[Name]</span></h3><p class="muted">Deputy Secretary-General</p></div>
+          <div class="member"><div class="portrait">D</div><h3><span class="ph">[Name]</span></h3><p class="muted">Head of Academics</p></div>
+          <div class="member"><div class="portrait">E</div><h3><span class="ph">[Name]</span></h3><p class="muted">Head of Logistics</p></div>
+          <div class="member"><div class="portrait">F</div><h3><span class="ph">[Name]</span></h3><p class="muted">Head of Outreach</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CM MUN TEASER ===== -->
+    <section id="cm-mun">
+      <div class="wrap">
+        <div class="feature">
+          <h2 data-reveal>CM MUN <span class="ph">[2027]</span></h2>
+          <p class="lead"><span class="ph">[One sentence on the upcoming conference and its theme.]</span></p>
+          <div class="facts">
+            <span><strong>Dates</strong> <span class="ph">[March 20–21, 2027]</span></span>
+            <span><strong>Venue</strong> <span class="ph">[Venue, Taipei]</span></span>
+          </div>
+          <!-- EDIT: conference start time (keep the +08:00 for Taiwan time) -->
+          <div class="countdown" data-countdown="2027-03-20T08:00:00+08:00"></div>
+          <div class="actions">
+            <a class="btn btn-solid" href="conference.html">Conference details</a>
+            <a class="btn btn-ghost" href="register.html">Apply now</a>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
+
+  <footer>
+    <div class="wrap">
+      <a class="brand" href="index.html">The Change <span>Makers</span></a>
+      <nav aria-label="Footer">
+        <a href="conference.html">Conference</a>
+        <a href="register.html">Register</a>
+        <!-- EDIT: your email and Instagram -->
+        <a href="mailto:contact@the-change-makers.org">Email us</a>
+        <a href="https://instagram.com/" target="_blank" rel="noopener">Instagram</a>
+      </nav>
+      <small>© <span data-year>2026</span> The Change Makers</small>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script src="main.js"></script>
 </body>
 </html>

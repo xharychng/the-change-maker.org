@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://the-change-makers.org/sitemap.xml
