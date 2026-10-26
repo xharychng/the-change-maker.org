@@ -8,14 +8,19 @@
   <link rel="canonical" href="https://the-change-makers.org/conference.html">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400..600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400..900&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <script>document.documentElement.classList.add("js");setTimeout(function(){if(!window.gsap){var c=document.querySelector(".curtain");if(c){c.style.transition="transform .8s";c.style.transform="translateY(-101%)";}}},2500);</script>
+
 </head>
 <body>
+  <div class="curtain" aria-hidden="true"><div class="curtain-mark">CM</div><div class="curtain-name">The Change Makers</div></div>
+  <div class="cursor" aria-hidden="true"></div><div class="cursor-dot" aria-hidden="true"></div>
+  <div class="progress" aria-hidden="true"></div>
 
   <header class="nav">
     <div class="wrap">
-      <a class="brand" href="index.html">The Change <span>Makers</span></a>
+      <a class="brand" href="index.html"><span class="mark">CM</span>The Change Makers</a>
       <button class="menu-btn" aria-expanded="false" aria-controls="menu">Menu</button>
       <ul id="menu">
         <li><a href="index.html">Home</a></li>
@@ -28,6 +33,7 @@
   <main>
     <!-- ===== HERO ===== -->
     <section class="hero page-hero">
+      <div class="aurora" aria-hidden="true"><span class="a1"></span><span class="a2"></span><span class="a3"></span></div>
       <div class="wrap">
         <!-- EDIT: conference name/year -->
         <h1 class="hero-sub" data-split>CM MUN 2027</h1>
@@ -41,6 +47,8 @@
       </div>
     </section>
 
+    <div class="marquee" aria-hidden="true"><div class="marquee-track"><span>CM MUN</span><span>Debate</span><span>Resolve</span><span>Lead</span><span>CM MUN</span><span>Debate</span><span>Resolve</span><span>Lead</span></div></div>
+
     <!-- ===== OVERVIEW ===== -->
     <section class="light">
       <div class="wrap split">
@@ -53,16 +61,16 @@
     </section>
 
     <!-- ===== COMMITTEES ===== -->
-    <section class="light" id="committees" style="padding-top:0">
+    <section class="light h-scroll" id="committees" style="padding-top:0">
       <div class="wrap">
         <h2 data-reveal>Committees</h2>
         <p class="lead">Each committee debates one topic over the course of the conference.</p>
         <!-- EDIT: copy a .committee block per committee -->
         <div class="committees">
-          <article class="committee"><div class="abbr ph">[UNSC]</div><h3>Security Council</h3><p><span class="ph">[Topic]</span></p></article>
-          <article class="committee"><div class="abbr ph">[UNHRC]</div><h3>Human Rights Council</h3><p><span class="ph">[Topic]</span></p></article>
-          <article class="committee"><div class="abbr ph">[WHO]</div><h3>World Health Organization</h3><p><span class="ph">[Topic]</span></p></article>
-          <article class="committee"><div class="abbr ph">[ECOSOC]</div><h3>Economic and Social Council</h3><p><span class="ph">[Topic]</span></p></article>
+          <article class="committee spot"><div class="abbr ph">[UNSC]</div><h3>Security Council</h3><p><span class="ph">[Topic]</span></p></article>
+          <article class="committee spot"><div class="abbr ph">[UNHRC]</div><h3>Human Rights Council</h3><p><span class="ph">[Topic]</span></p></article>
+          <article class="committee spot"><div class="abbr ph">[WHO]</div><h3>World Health Organization</h3><p><span class="ph">[Topic]</span></p></article>
+          <article class="committee spot"><div class="abbr ph">[ECOSOC]</div><h3>Economic and Social Council</h3><p><span class="ph">[Topic]</span></p></article>
         </div>
       </div>
     </section>
@@ -76,7 +84,7 @@
           <!-- EDIT: times and sessions -->
           <div class="day">
             <h3>Day 1 <span class="ph muted" style="font-size:.6em">[Sat, Mar 20]</span></h3>
-            <ol>
+            <ol><span class="tl-fill" aria-hidden="true"></span>
               <li><time>08:00</time>Registration and check-in</li>
               <li><time>09:00</time>Opening ceremony</li>
               <li><time>10:00</time>Committee session I</li>
@@ -87,7 +95,7 @@
           </div>
           <div class="day">
             <h3>Day 2 <span class="ph muted" style="font-size:.6em">[Sun, Mar 21]</span></h3>
-            <ol>
+            <ol><span class="tl-fill" aria-hidden="true"></span>
               <li><time>08:30</time>Committee session III</li>
               <li><time>12:00</time>Lunch</li>
               <li><time>13:00</time>Committee session IV and voting</li>
@@ -112,10 +120,10 @@
         <h2 style="margin-top:96px" data-reveal>Questions</h2>
         <div class="faq">
           <!-- EDIT: questions and answers -->
-          <details><summary>Do I need MUN experience to join?</summary><p><span class="ph">[Answer]</span></p></details>
-          <details><summary>How are committee assignments decided?</summary><p><span class="ph">[Answer]</span></p></details>
-          <details><summary>Will there be awards?</summary><p><span class="ph">[Answer]</span></p></details>
-          <details><summary>Who do I contact with questions?</summary><p>Email <a href="mailto:contact@the-change-makers.org">contact@the-change-makers.org</a>. <span class="ph">[Edit email]</span></p></details>
+          <details><summary>Do I need MUN experience to join?</summary><div class="answer"><p><span class="ph">[Answer]</span></p></div></details>
+          <details><summary>How are committee assignments decided?</summary><div class="answer"><p><span class="ph">[Answer]</span></p></div></details>
+          <details><summary>Will there be awards?</summary><div class="answer"><p><span class="ph">[Answer]</span></p></div></details>
+          <details><summary>Who do I contact with questions?</summary><div class="answer"><p>Email <a href="mailto:contact@the-change-makers.org">contact@the-change-makers.org</a>. <span class="ph">[Edit email]</span></p></div></details>
         </div>
       </div>
     </section>
@@ -123,7 +131,7 @@
     <!-- ===== CTA ===== -->
     <section>
       <div class="wrap">
-        <div class="feature">
+        <div class="feature spot">
           <h2 data-reveal>Ready to take your seat?</h2>
           <p class="lead">Deadlines and application forms for the Deputy Secretary-General, chairs and delegates are on the registration page.</p>
           <div class="actions"><a class="btn btn-solid" href="register.html">Go to registration</a></div>
@@ -134,13 +142,18 @@
 
   <footer>
     <div class="wrap">
-      <a class="brand" href="index.html">The Change <span>Makers</span></a>
-      <nav aria-label="Footer">
-        <a href="index.html">Home</a>
-        <a href="register.html">Register</a>
-        <a href="mailto:contact@the-change-makers.org">Email us</a>
-        <a href="https://instagram.com/" target="_blank" rel="noopener">Instagram</a>
-      </nav>
+      <div class="top">
+        <a class="brand" href="index.html"><span class="mark">CM</span>The Change Makers</a>
+        <nav aria-label="Footer">
+          <a href="index.html">Home</a>
+          <a href="conference.html">Conference</a>
+          <a href="register.html">Register</a>
+          <!-- EDIT: your email and Instagram -->
+          <a href="mailto:contact@the-change-makers.org">Email us</a>
+          <a href="https://instagram.com/" target="_blank" rel="noopener">Instagram</a>
+        </nav>
+      </div>
+      <div class="wordmark" aria-hidden="true">Change <span>Makers</span></div>
       <small>© <span data-year>2026</span> The Change Makers</small>
     </div>
   </footer>
