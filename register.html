@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400..900&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=5">
+  <link rel="stylesheet" href="style.css?v=6">
   <script>document.documentElement.classList.add("js");setTimeout(function(){if(!window.gsap){var c=document.querySelector(".curtain");if(c){c.style.transition="transform .8s";c.style.transform="translateY(-101%)";}}},2500);</script>
 
 </head>
@@ -50,7 +50,7 @@
           HOW TO EDIT EACH POSITION
           - data-deadline: closing time. Keep +08:00 for Taiwan time. After it passes, the page shows "Applications closed" by itself.
           - Change the "Deadline" text to match.
-          - Replace href="#" on the .apply button with your Google Form link (https://forms.gle/...).
+          - Each position's form opens in a pop-up. Answers go to the "CM MUN Applications" Google Sheet.
         -->
 
         <!-- ===== DEPUTY SECRETARY-GENERAL ===== -->
@@ -75,9 +75,7 @@
               <li><span class="ph">[MUN résumé]</span></li>
               <li><span class="ph">[Short statement of interest]</span></li>
             </ul>
-            <!-- EDIT: Google Form link -->
-            <a class="btn btn-solid apply" href="#" target="_blank" rel="noopener">Apply as Deputy Secretary-General</a>
-            <p class="form-note" aria-live="polite"></p>
+            <button class="btn btn-solid apply" type="button" data-form="dsg" aria-haspopup="dialog">Apply as Deputy Secretary-General</button>
           </div>
         </article>
 
@@ -103,9 +101,7 @@
               <li><span class="ph">[MUN résumé]</span></li>
               <li><span class="ph">[Committee preferences]</span></li>
             </ul>
-            <!-- EDIT: Google Form link -->
-            <a class="btn btn-solid apply" href="#" target="_blank" rel="noopener">Apply as a chair</a>
-            <p class="form-note" aria-live="polite"></p>
+            <button class="btn btn-solid apply" type="button" data-form="chair" aria-haspopup="dialog">Apply as a chair</button>
           </div>
         </article>
 
@@ -130,14 +126,118 @@
               <li><span class="ph">[Committee and country preferences]</span></li>
               <li><span class="ph">[Delegate fee, see the conference page]</span></li>
             </ul>
-            <!-- EDIT: Google Form link -->
-            <a class="btn btn-solid apply" href="#" target="_blank" rel="noopener">Apply as a delegate</a>
-            <p class="form-note" aria-live="polite"></p>
+            <button class="btn btn-solid apply" type="button" data-form="delegate" aria-haspopup="dialog">Apply as a delegate</button>
           </div>
         </article>
       </div>
     </section>
   </main>
+
+
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-panel" tabindex="-1">
+      <button class="modal-close" data-close aria-label="Close"><span></span><span></span></button>
+      <div class="modal-body"></div>
+    </div>
+  </div>
+  <template id="form-dsg">
+    <p class="m-kicker">Application</p>
+    <h2 class="m-name">Deputy Secretary-General</h2>
+    <form class="apply-form" novalidate>
+      <input type="hidden" name="role" value="dsg">
+      <div class="hp" aria-hidden="true"><label>Leave this empty<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+      <div class="fields">
+        <div class="field"><label for="dsg-f0">Full name</label><input id="dsg-f0" type="text" name="Full name" autocomplete="name" required></div>
+        <div class="field"><label for="dsg-f1">Email</label><input id="dsg-f1" type="email" name="Email" autocomplete="email" required></div>
+        <div class="field"><label for="dsg-f2">Phone <span class="opt">(optional)</span></label><input id="dsg-f2" type="tel" name="Phone" autocomplete="tel"></div>
+        <div class="field"><label for="dsg-f3">School</label><input id="dsg-f3" type="text" name="School" autocomplete="organization" required></div>
+        <div class="field"><label for="dsg-f4">Grade</label><select id="dsg-f4" name="Grade" required><option value="">Choose…</option><option>Grade 7</option><option>Grade 8</option><option>Grade 9</option><option>Grade 10</option><option>Grade 11</option><option>Grade 12</option></select></div>
+        <div class="field"><label for="dsg-f5">Conferences attended</label><input id="dsg-f5" type="number" name="Conferences attended" min="0" max="200" inputmode="numeric" required aria-describedby="dsg-f5-hint"><small id="dsg-f5-hint">Total number of MUN conferences</small></div>
+        <div class="field wide"><label for="dsg-f6">MUN experience</label><textarea id="dsg-f6" name="MUN experience" rows="5" maxlength="4000" required aria-describedby="dsg-f6-hint"></textarea><small id="dsg-f6-hint">List conferences and the role you held at each</small></div>
+        <div class="field wide"><label for="dsg-f7">Leadership or secretariat experience</label><textarea id="dsg-f7" name="Leadership or secretariat experience" rows="5" maxlength="4000" required></textarea></div>
+        <div class="field wide"><label for="dsg-f8">Why you want to be DSG</label><textarea id="dsg-f8" name="Why you want to be DSG" rows="5" maxlength="4000" required aria-describedby="dsg-f8-hint"></textarea><small id="dsg-f8-hint">150–250 words</small></div>
+        <div class="field"><label for="dsg-f9">Résumé link <span class="opt">(optional)</span></label><input id="dsg-f9" type="url" name="Résumé link" aria-describedby="dsg-f9-hint"><small id="dsg-f9-hint">Google Drive or PDF link, shared as “anyone with the link”</small></div>
+      </div>
+      <label class="consent"><input type="checkbox" name="consent" required> I confirm these details are accurate and agree to be contacted about CM MUN.</label>
+      <p class="form-error" role="alert" hidden></p>
+      <div class="m-actions"><button class="btn btn-solid" type="submit">Submit application</button></div>
+      <p class="save-note">Your answers are saved on this device until you submit.</p>
+    </form>
+    <div class="form-done" hidden>
+      <svg class="check" viewBox="0 0 52 52" aria-hidden="true"><circle cx="26" cy="26" r="24"/><path d="M15 27l7 7 15-16"/></svg>
+      <h2>Application received</h2>
+      <p>Thanks, <span data-name></span>. We'll contact you at <strong data-email></strong> after the deadline.</p>
+      <div class="m-actions"><button class="btn btn-ghost" type="button" data-close>Close</button></div>
+    </div>
+  </template>
+  <template id="form-chair">
+    <p class="m-kicker">Application</p>
+    <h2 class="m-name">Chair</h2>
+    <form class="apply-form" novalidate>
+      <input type="hidden" name="role" value="chair">
+      <div class="hp" aria-hidden="true"><label>Leave this empty<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+      <div class="fields">
+        <div class="field"><label for="chair-f0">Full name</label><input id="chair-f0" type="text" name="Full name" autocomplete="name" required></div>
+        <div class="field"><label for="chair-f1">Email</label><input id="chair-f1" type="email" name="Email" autocomplete="email" required></div>
+        <div class="field"><label for="chair-f2">Phone <span class="opt">(optional)</span></label><input id="chair-f2" type="tel" name="Phone" autocomplete="tel"></div>
+        <div class="field"><label for="chair-f3">School</label><input id="chair-f3" type="text" name="School" autocomplete="organization" required></div>
+        <div class="field"><label for="chair-f4">Grade</label><select id="chair-f4" name="Grade" required><option value="">Choose…</option><option>Grade 7</option><option>Grade 8</option><option>Grade 9</option><option>Grade 10</option><option>Grade 11</option><option>Grade 12</option></select></div>
+        <div class="field"><label for="chair-f5">Conferences attended</label><input id="chair-f5" type="number" name="Conferences attended" min="0" max="200" inputmode="numeric" required aria-describedby="chair-f5-hint"><small id="chair-f5-hint">Total number of MUN conferences</small></div>
+        <div class="field wide"><label for="chair-f6">Chairing experience</label><textarea id="chair-f6" name="Chairing experience" rows="5" maxlength="4000" required aria-describedby="chair-f6-hint"></textarea><small id="chair-f6-hint">Conferences and committees you have chaired, or “None yet”</small></div>
+        <div class="field"><label for="chair-f7">Committee choice 1</label><select id="chair-f7" name="Committee choice 1" required><option value="">Choose…</option><option>UNSC</option><option>UNHRC</option><option>WHO</option><option>ECOSOC</option></select></div>
+        <div class="field"><label for="chair-f8">Committee choice 2</label><select id="chair-f8" name="Committee choice 2" required><option value="">Choose…</option><option>UNSC</option><option>UNHRC</option><option>WHO</option><option>ECOSOC</option></select></div>
+        <div class="field"><label for="chair-f9">Committee choice 3 <span class="opt">(optional)</span></label><select id="chair-f9" name="Committee choice 3"><option value="">Choose…</option><option>UNSC</option><option>UNHRC</option><option>WHO</option><option>ECOSOC</option></select></div>
+        <div class="field wide"><label for="chair-f10">Why you want to chair</label><textarea id="chair-f10" name="Why you want to chair" rows="5" maxlength="4000" required aria-describedby="chair-f10-hint"></textarea><small id="chair-f10-hint">100–200 words</small></div>
+        <div class="field"><label for="chair-f11">Résumé link <span class="opt">(optional)</span></label><input id="chair-f11" type="url" name="Résumé link"></div>
+      </div>
+      <label class="consent"><input type="checkbox" name="consent" required> I confirm these details are accurate and agree to be contacted about CM MUN.</label>
+      <p class="form-error" role="alert" hidden></p>
+      <div class="m-actions"><button class="btn btn-solid" type="submit">Submit application</button></div>
+      <p class="save-note">Your answers are saved on this device until you submit.</p>
+    </form>
+    <div class="form-done" hidden>
+      <svg class="check" viewBox="0 0 52 52" aria-hidden="true"><circle cx="26" cy="26" r="24"/><path d="M15 27l7 7 15-16"/></svg>
+      <h2>Application received</h2>
+      <p>Thanks, <span data-name></span>. We'll contact you at <strong data-email></strong> after the deadline.</p>
+      <div class="m-actions"><button class="btn btn-ghost" type="button" data-close>Close</button></div>
+    </div>
+  </template>
+  <template id="form-delegate">
+    <p class="m-kicker">Application</p>
+    <h2 class="m-name">Delegate</h2>
+    <form class="apply-form" novalidate>
+      <input type="hidden" name="role" value="delegate">
+      <div class="hp" aria-hidden="true"><label>Leave this empty<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+      <div class="fields">
+        <div class="field"><label for="delegate-f0">Full name</label><input id="delegate-f0" type="text" name="Full name" autocomplete="name" required></div>
+        <div class="field"><label for="delegate-f1">Email</label><input id="delegate-f1" type="email" name="Email" autocomplete="email" required></div>
+        <div class="field"><label for="delegate-f2">Phone <span class="opt">(optional)</span></label><input id="delegate-f2" type="tel" name="Phone" autocomplete="tel"></div>
+        <div class="field"><label for="delegate-f3">School</label><input id="delegate-f3" type="text" name="School" autocomplete="organization" required></div>
+        <div class="field"><label for="delegate-f4">Grade</label><select id="delegate-f4" name="Grade" required><option value="">Choose…</option><option>Grade 7</option><option>Grade 8</option><option>Grade 9</option><option>Grade 10</option><option>Grade 11</option><option>Grade 12</option></select></div>
+        <div class="field"><label for="delegate-f5">MUN experience</label><select id="delegate-f5" name="MUN experience" required><option value="">Choose…</option><option>First conference</option><option>1–3 conferences</option><option>4–7 conferences</option><option>8 or more</option></select></div>
+        <div class="field"><label for="delegate-f6">Committee choice 1</label><select id="delegate-f6" name="Committee choice 1" required><option value="">Choose…</option><option>UNSC</option><option>UNHRC</option><option>WHO</option><option>ECOSOC</option></select></div>
+        <div class="field"><label for="delegate-f7">Committee choice 2</label><select id="delegate-f7" name="Committee choice 2" required><option value="">Choose…</option><option>UNSC</option><option>UNHRC</option><option>WHO</option><option>ECOSOC</option></select></div>
+        <div class="field"><label for="delegate-f8">Committee choice 3 <span class="opt">(optional)</span></label><select id="delegate-f8" name="Committee choice 3"><option value="">Choose…</option><option>UNSC</option><option>UNHRC</option><option>WHO</option><option>ECOSOC</option></select></div>
+        <div class="field"><label for="delegate-f9">Country preferences <span class="opt">(optional)</span></label><input id="delegate-f9" type="text" name="Country preferences" aria-describedby="delegate-f9-hint"><small id="delegate-f9-hint">Up to three countries</small></div>
+        <div class="field"><label for="delegate-f10">Applying as</label><select id="delegate-f10" name="Applying as" required><option value="">Choose…</option><option>Individual</option><option>Part of a school delegation</option></select></div>
+        <div class="field"><label for="delegate-f11">Delegation name <span class="opt">(optional)</span></label><input id="delegate-f11" type="text" name="Delegation name" aria-describedby="delegate-f11-hint"><small id="delegate-f11-hint">If you&#x27;re part of a school delegation</small></div>
+        <div class="field wide"><label for="delegate-f12">Anything else we should know <span class="opt">(optional)</span></label><textarea id="delegate-f12" name="Anything else we should know" rows="5" maxlength="4000"></textarea></div>
+      </div>
+      <label class="consent"><input type="checkbox" name="consent" required> I confirm these details are accurate and agree to be contacted about CM MUN.</label>
+      <p class="form-error" role="alert" hidden></p>
+      <div class="m-actions"><button class="btn btn-solid" type="submit">Submit application</button></div>
+      <p class="save-note">Your answers are saved on this device until you submit.</p>
+    </form>
+    <div class="form-done" hidden>
+      <svg class="check" viewBox="0 0 52 52" aria-hidden="true"><circle cx="26" cy="26" r="24"/><path d="M15 27l7 7 15-16"/></svg>
+      <h2>Application received</h2>
+      <p>Thanks, <span data-name></span>. We'll contact you at <strong data-email></strong> after the deadline.</p>
+      <div class="m-actions"><button class="btn btn-ghost" type="button" data-close>Close</button></div>
+    </div>
+  </template>
+  <!-- EDIT: paste your Apps Script web app URL between the quotes (see setup steps) -->
+  <script>window.CM_FORM_ENDPOINT = "";</script>
 
   <footer>
     <div class="wrap">
@@ -160,6 +260,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
-  <script src="main.js?v=5"></script>
+  <script src="main.js?v=6"></script>
 </body>
 </html>

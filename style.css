@@ -266,3 +266,33 @@ footer small{color:var(--mist)}
 .modal-body .m-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
 .modal-body .ph{color:var(--brass-soft)}
 html.modal-open{overflow:hidden}
+
+/* ===== Application forms ===== */
+.modal-body .m-kicker{color:var(--brass);font-weight:700;margin-bottom:6px}
+.apply-form .fields{display:grid;grid-template-columns:1fr 1fr;gap:20px 22px;margin-top:28px}
+.apply-form .field{display:flex;flex-direction:column;gap:7px;min-width:0}
+.apply-form .field.wide{grid-column:1/-1}
+.apply-form label{font-weight:700;font-size:.95rem}
+.apply-form .opt{font-weight:500;color:var(--mist)}
+.apply-form small{color:var(--mist);font-size:.85rem}
+.apply-form input,.apply-form select,.apply-form textarea{width:100%;font:inherit;font-size:1rem;color:var(--paper);background:var(--ink);border:1px solid rgba(200,162,90,.3);border-radius:14px;padding:13px 15px;transition:border-color .25s,box-shadow .25s}
+.apply-form textarea{resize:vertical;min-height:120px;line-height:1.55}
+.apply-form select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--brass) 50%),linear-gradient(135deg,var(--brass) 50%,transparent 50%);background-position:calc(100% - 20px) 55%,calc(100% - 14px) 55%;background-size:6px 6px;background-repeat:no-repeat;padding-right:40px}
+.apply-form select option{background:var(--ink-2);color:var(--paper)}
+.apply-form input:focus,.apply-form select:focus,.apply-form textarea:focus{outline:none;border-color:var(--brass);box-shadow:0 0 0 3px rgba(200,162,90,.22)}
+.apply-form .invalid{border-color:#E58C7A!important;box-shadow:0 0 0 3px rgba(229,140,122,.18)}
+.apply-form .consent{display:flex;gap:12px;align-items:flex-start;margin-top:26px;font-weight:500;color:var(--mist);cursor:pointer;border-radius:12px;padding:4px}
+.apply-form .consent.invalid{box-shadow:0 0 0 2px #E58C7A}
+.apply-form .consent input{width:20px;height:20px;flex:none;margin-top:3px;accent-color:var(--brass);padding:0}
+.apply-form .form-error{margin-top:18px;color:#F2A897;font-weight:600}
+.apply-form .save-note{margin-top:12px;font-size:.85rem;color:var(--mist)}
+.apply-form .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.apply-form button[disabled]{opacity:.6;cursor:wait}
+.form-done{text-align:center;padding:24px 0 8px}
+.form-done .check{width:88px;height:88px;margin:0 auto 22px;display:block}
+.form-done .check circle,.form-done .check path{fill:none;stroke:var(--brass);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.form-done h2{font-size:clamp(2rem,5vw,3rem);margin-bottom:12px}
+.form-done p{margin:0 auto}
+.form-done .m-actions{justify-content:center}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+@media (max-width:640px){.apply-form .fields{grid-template-columns:1fr}}

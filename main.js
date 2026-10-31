@@ -307,17 +307,10 @@
     const status = role.querySelector(".status"), btn = role.querySelector(".apply"), cd = role.querySelector(".countdown");
     if (left <= 0) {
       status.textContent = "Applications closed"; status.classList.add("closed");
-      if (btn) { btn.setAttribute("aria-disabled", "true"); btn.textContent = "Applications closed"; btn.removeAttribute("href"); }
+      if (btn) { btn.setAttribute("aria-disabled", "true"); btn.disabled = true; btn.textContent = "Applications closed"; }
       if (cd) cd.remove();
     } else status.textContent = left < 7 * 864e5 ? "Closing soon" : "Applications open";
   });
-  document.querySelectorAll(".apply").forEach((btn) => btn.addEventListener("click", (e) => {
-    if (btn.getAttribute("href") === "#") {
-      e.preventDefault();
-      const note = btn.parentElement.querySelector(".form-note");
-      if (note) note.textContent = "The application form opens soon. Check back shortly.";
-    }
-  }));
 
   /* ---------- Footer wordmark fills the width exactly ---------- */
   const wm = document.querySelector(".wordmark");
@@ -332,53 +325,126 @@
   fitWordmark();
   let rz; window.addEventListener("resize", () => { clearTimeout(rz); rz = setTimeout(fitWordmark, 150); });
 
-  /* ---------- Committee pop-ups ---------- */
-  const modal = document.getElementById("committee-modal");
+  /* ---------- Pop-ups (committee details + application forms) ---------- */
+  const modal = document.querySelector(".modal");
   if (modal) {
     const panel = modal.querySelector(".modal-panel"), body = modal.querySelector(".modal-body"), backdrop = modal.querySelector(".modal-backdrop");
-    let lastCard = null, closing = false;
-    const open = (card) => {
-      lastCard = card;
+    let lastOrigin = null, closing = false;
+
+    const openModal = (fragment, origin) => {
+      lastOrigin = origin;
       body.innerHTML = "";
-      body.appendChild(card.querySelector("template.committee-details").content.cloneNode(true));
+      body.appendChild(fragment);
       const title = body.querySelector(".m-name"); if (title) title.id = "modal-title";
-      body.querySelectorAll("[data-guide]").forEach((g) => g.addEventListener("click", (e) => {
-        if (g.getAttribute("href") === "#") { e.preventDefault(); g.textContent = "Background guide coming soon"; }
-      }));
+      body.querySelectorAll("[data-close]").forEach((el) => el.addEventListener("click", closeModal));
       modal.hidden = false; root.classList.add("modal-open"); if (lenis) lenis.stop();
       panel.scrollTop = 0; panel.focus();
       if (motion) {
-        const r = card.getBoundingClientRect(), pr = panel.getBoundingClientRect();
+        const r = origin.getBoundingClientRect(), pr = panel.getBoundingClientRect();
         G.timeline()
           .fromTo(backdrop, { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.out" }, 0)
-          .fromTo(panel, { x: r.left + r.width / 2 - (pr.left + pr.width / 2), y: r.top + r.height / 2 - (pr.top + pr.height / 2), scale: Math.max(0.3, r.width / pr.width), opacity: 0 },
+          .fromTo(panel, { x: r.left + r.width / 2 - (pr.left + pr.width / 2), y: r.top + r.height / 2 - (pr.top + pr.height / 2), scale: Math.max(0.3, Math.min(1, r.width / pr.width)), opacity: 0 },
             { x: 0, y: 0, scale: 1, opacity: 1, duration: 0.8, ease: "expo.out" }, 0)
-          .from(body.children, { y: 24, opacity: 0, duration: 0.6, ease: "power3.out", stagger: 0.05 }, 0.25);
+          .from(body.querySelectorAll(":scope > *, .field, .consent"), { y: 24, opacity: 0, duration: 0.6, ease: "power3.out", stagger: 0.03 }, 0.25);
       }
     };
-    const close = () => {
+    const closeModal = () => {
       if (modal.hidden || closing) return;
-      const done = () => { modal.hidden = true; closing = false; root.classList.remove("modal-open"); if (lenis) lenis.start(); if (lastCard) lastCard.focus({ preventScroll: true }); };
+      const done = () => { modal.hidden = true; closing = false; root.classList.remove("modal-open"); if (lenis) lenis.start(); if (lastOrigin) lastOrigin.focus({ preventScroll: true }); };
       if (!motion) return done();
       closing = true;
       G.timeline({ onComplete: done })
         .to(panel, { y: 40, scale: 0.94, opacity: 0, duration: 0.4, ease: "power3.in" }, 0)
         .to(backdrop, { opacity: 0, duration: 0.45, ease: "power2.in" }, 0.05);
     };
-    document.querySelectorAll(".committee").forEach((card) => {
-      card.addEventListener("click", () => open(card));
-      card.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(card); } });
-    });
-    modal.querySelectorAll("[data-close]").forEach((el) => el.addEventListener("click", close));
+    modal.querySelectorAll(":scope > [data-close], .modal-close").forEach((el) => el.addEventListener("click", closeModal));
     document.addEventListener("keydown", (e) => {
       if (modal.hidden) return;
-      if (e.key === "Escape") close();
+      if (e.key === "Escape") closeModal();
       if (e.key === "Tab") { // keep keyboard focus inside the pop-up
-        const f = [...panel.querySelectorAll("a[href], button")]; if (!f.length) return;
+        const f = [...panel.querySelectorAll("a[href], button:not([disabled]), input:not([type=hidden]):not([tabindex='-1']), select, textarea")].filter((el) => el.offsetParent);
+        if (!f.length) return;
         if (e.shiftKey && document.activeElement === f[0]) { e.preventDefault(); f[f.length - 1].focus(); }
         else if (!e.shiftKey && document.activeElement === f[f.length - 1]) { e.preventDefault(); f[0].focus(); }
       }
     });
+
+    /* Committee cards */
+    document.querySelectorAll(".committee").forEach((card) => {
+      const show = () => {
+        const frag = card.querySelector("template.committee-details").content.cloneNode(true);
+        frag.querySelectorAll("[data-guide]").forEach((g) => g.addEventListener("click", (e) => {
+          if (g.getAttribute("href") === "#") { e.preventDefault(); g.textContent = "Background guide coming soon"; }
+        }));
+        openModal(frag, card);
+      };
+      card.addEventListener("click", show);
+      card.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); show(); } });
+    });
+
+    /* Application forms */
+    const store = {
+      get(k) { try { return JSON.parse(localStorage.getItem(k) || "null"); } catch (e) { return null; } },
+      set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} },
+      del(k) { try { localStorage.removeItem(k); } catch (e) {} },
+    };
+    document.querySelectorAll("[data-form]").forEach((btn) => btn.addEventListener("click", () => {
+      if (btn.disabled) return;
+      const role = btn.dataset.form, key = "cm-draft-" + role;
+      const frag = document.getElementById("form-" + role).content.cloneNode(true);
+      const form = frag.querySelector("form"), done = frag.querySelector(".form-done"), err = frag.querySelector(".form-error");
+
+      // Restore and keep a draft on this device
+      const draft = store.get(key);
+      if (draft) Object.entries(draft).forEach(([n, v]) => { const el = form.elements[n]; if (el && el.type !== "hidden" && el.type !== "checkbox") el.value = v; });
+      form.addEventListener("input", () => {
+        const d = {}; [...form.elements].forEach((el) => { if (el.name && el.type !== "hidden" && el.type !== "checkbox" && el.name !== "website") d[el.name] = el.value; });
+        store.set(key, d);
+      });
+      form.addEventListener("input", (e) => { e.target.classList.remove("invalid"); if (e.target.type === "checkbox") e.target.parentElement.classList.remove("invalid"); });
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        err.hidden = true;
+        const bad = [...form.querySelectorAll("input, select, textarea")].filter((el) => !el.checkValidity());
+        form.querySelectorAll(".invalid").forEach((el) => el.classList.remove("invalid"));
+        if (bad.length) {
+          bad.forEach((el) => (el.type === "checkbox" ? el.parentElement : el).classList.add("invalid"));
+          const first = bad[0];
+          err.textContent = first.type === "checkbox" ? "Tick the confirmation box to submit."
+            : first.type === "email" && first.value ? "Enter a valid email address, like name@example.com."
+            : "Fill in the highlighted fields to submit.";
+          err.hidden = false; first.focus();
+          return;
+        }
+        const url = window.CM_FORM_ENDPOINT;
+        if (!url) { err.textContent = "Applications aren't connected yet. Please check back soon."; err.hidden = false; return; }
+        const submit = form.querySelector("[type=submit]");
+        submit.disabled = true; submit.textContent = "Submitting…";
+        try {
+          const res = await fetch(url, { method: "POST", body: new URLSearchParams(new FormData(form)) });
+          const data = await res.json().catch(() => ({ ok: res.ok }));
+          if (!data.ok) throw new Error(data.error || "Submission failed");
+          store.del(key);
+          done.querySelector("[data-name]").textContent = form.elements["Full name"].value.split(" ")[0];
+          done.querySelector("[data-email]").textContent = form.elements["Email"].value;
+          form.hidden = true; done.hidden = false; panel.scrollTop = 0;
+          if (motion) {
+            const path = done.querySelector(".check path"), circ = done.querySelector(".check circle");
+            [path, circ].forEach((s) => { const l = s.getTotalLength(); s.style.strokeDasharray = l; s.style.strokeDashoffset = l; });
+            G.timeline().to(circ, { strokeDashoffset: 0, duration: 0.7, ease: "power2.out" })
+              .to(path, { strokeDashoffset: 0, duration: 0.45, ease: "power2.out" }, "-=0.2")
+              .from(done.querySelectorAll("h2, p, .m-actions"), { y: 16, opacity: 0, stagger: 0.08, duration: 0.5, ease: "power3.out" }, "-=0.3");
+          }
+          done.querySelector("[data-close]").focus();
+        } catch (ex) {
+          err.textContent = "Your application couldn't be sent. Check your connection and try again; your answers are still here.";
+          err.hidden = false;
+          submit.disabled = false; submit.textContent = "Submit application";
+        }
+      });
+      openModal(frag, btn);
+    }));
   }
 
   const y = document.querySelector("[data-year]");
