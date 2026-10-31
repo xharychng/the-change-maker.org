@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400..900&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=4">
+  <link rel="stylesheet" href="style.css?v=5">
   <script>document.documentElement.classList.add("js");setTimeout(function(){if(!window.gsap){var c=document.querySelector(".curtain");if(c){c.style.transition="transform .8s";c.style.transform="translateY(-101%)";}}},2500);</script>
 
 </head>
@@ -64,13 +64,101 @@
     <section class="light" id="committees" style="padding-top:0">
       <div class="wrap">
         <h2 data-reveal>Committees</h2>
-        <p class="lead">Each committee debates one topic over the course of the conference.</p>
+        <p class="lead">Each committee debates one topic over the course of the conference. Select a committee for its full details.</p>
         <!-- EDIT: copy a .committee block per committee -->
         <div class="committees">
-          <article class="committee spot"><div class="abbr ph">[UNSC]</div><h3>Security Council</h3><p><span class="ph">[Topic]</span></p></article>
-          <article class="committee spot"><div class="abbr ph">[UNHRC]</div><h3>Human Rights Council</h3><p><span class="ph">[Topic]</span></p></article>
-          <article class="committee spot"><div class="abbr ph">[WHO]</div><h3>World Health Organization</h3><p><span class="ph">[Topic]</span></p></article>
-          <article class="committee spot"><div class="abbr ph">[ECOSOC]</div><h3>Economic and Social Council</h3><p><span class="ph">[Topic]</span></p></article>
+          <article class="committee spot" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Security Council: more details">
+            <div class="abbr ph">[UNSC]</div><h3>Security Council</h3><p><span class="ph">[Topic]</span></p>
+            <span class="more-hint" aria-hidden="true">View details +</span>
+            <!-- EDIT: pop-up details for this committee -->
+            <template class="committee-details">
+              <div class="m-abbr ph">[UNSC]</div>
+              <h2 class="m-name">Security Council</h2>
+              <p class="m-topic"><span class="ph">[Full agenda topic]</span></p>
+              <dl class="m-facts">
+                <div><dt>Level</dt><dd><span class="ph">[Intermediate to advanced]</span></dd></div>
+                <div><dt>Size</dt><dd><span class="ph">[15 delegations]</span></dd></div>
+                <div><dt>Chairs</dt><dd><span class="ph">[Chair names]</span></dd></div>
+              </dl>
+              <h3>About the committee</h3>
+              <p><span class="ph">[What this committee does and its mandate, two or three sentences.]</span></p>
+              <h3>What delegates will debate</h3>
+              <p><span class="ph">[Background on the topic and the key questions delegates should prepare for.]</span></p>
+              <div class="m-actions">
+                <a class="btn btn-solid" href="#" data-guide>Background guide</a>
+                <a class="btn btn-ghost" href="register.html">Apply as a delegate</a>
+              </div>
+            </template>
+          </article>
+          <article class="committee spot" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Human Rights Council: more details">
+            <div class="abbr ph">[UNHRC]</div><h3>Human Rights Council</h3><p><span class="ph">[Topic]</span></p>
+            <span class="more-hint" aria-hidden="true">View details +</span>
+            <!-- EDIT: pop-up details for this committee -->
+            <template class="committee-details">
+              <div class="m-abbr ph">[UNHRC]</div>
+              <h2 class="m-name">Human Rights Council</h2>
+              <p class="m-topic"><span class="ph">[Full agenda topic]</span></p>
+              <dl class="m-facts">
+                <div><dt>Level</dt><dd><span class="ph">[Beginner friendly]</span></dd></div>
+                <div><dt>Size</dt><dd><span class="ph">[30 delegations]</span></dd></div>
+                <div><dt>Chairs</dt><dd><span class="ph">[Chair names]</span></dd></div>
+              </dl>
+              <h3>About the committee</h3>
+              <p><span class="ph">[What this committee does and its mandate, two or three sentences.]</span></p>
+              <h3>What delegates will debate</h3>
+              <p><span class="ph">[Background on the topic and the key questions delegates should prepare for.]</span></p>
+              <div class="m-actions">
+                <a class="btn btn-solid" href="#" data-guide>Background guide</a>
+                <a class="btn btn-ghost" href="register.html">Apply as a delegate</a>
+              </div>
+            </template>
+          </article>
+          <article class="committee spot" tabindex="0" role="button" aria-haspopup="dialog" aria-label="World Health Organization: more details">
+            <div class="abbr ph">[WHO]</div><h3>World Health Organization</h3><p><span class="ph">[Topic]</span></p>
+            <span class="more-hint" aria-hidden="true">View details +</span>
+            <!-- EDIT: pop-up details for this committee -->
+            <template class="committee-details">
+              <div class="m-abbr ph">[WHO]</div>
+              <h2 class="m-name">World Health Organization</h2>
+              <p class="m-topic"><span class="ph">[Full agenda topic]</span></p>
+              <dl class="m-facts">
+                <div><dt>Level</dt><dd><span class="ph">[Beginner friendly]</span></dd></div>
+                <div><dt>Size</dt><dd><span class="ph">[30 delegations]</span></dd></div>
+                <div><dt>Chairs</dt><dd><span class="ph">[Chair names]</span></dd></div>
+              </dl>
+              <h3>About the committee</h3>
+              <p><span class="ph">[What this committee does and its mandate, two or three sentences.]</span></p>
+              <h3>What delegates will debate</h3>
+              <p><span class="ph">[Background on the topic and the key questions delegates should prepare for.]</span></p>
+              <div class="m-actions">
+                <a class="btn btn-solid" href="#" data-guide>Background guide</a>
+                <a class="btn btn-ghost" href="register.html">Apply as a delegate</a>
+              </div>
+            </template>
+          </article>
+          <article class="committee spot" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Economic and Social Council: more details">
+            <div class="abbr ph">[ECOSOC]</div><h3>Economic and Social Council</h3><p><span class="ph">[Topic]</span></p>
+            <span class="more-hint" aria-hidden="true">View details +</span>
+            <!-- EDIT: pop-up details for this committee -->
+            <template class="committee-details">
+              <div class="m-abbr ph">[ECOSOC]</div>
+              <h2 class="m-name">Economic and Social Council</h2>
+              <p class="m-topic"><span class="ph">[Full agenda topic]</span></p>
+              <dl class="m-facts">
+                <div><dt>Level</dt><dd><span class="ph">[Intermediate]</span></dd></div>
+                <div><dt>Size</dt><dd><span class="ph">[25 delegations]</span></dd></div>
+                <div><dt>Chairs</dt><dd><span class="ph">[Chair names]</span></dd></div>
+              </dl>
+              <h3>About the committee</h3>
+              <p><span class="ph">[What this committee does and its mandate, two or three sentences.]</span></p>
+              <h3>What delegates will debate</h3>
+              <p><span class="ph">[Background on the topic and the key questions delegates should prepare for.]</span></p>
+              <div class="m-actions">
+                <a class="btn btn-solid" href="#" data-guide>Background guide</a>
+                <a class="btn btn-ghost" href="register.html">Apply as a delegate</a>
+              </div>
+            </template>
+          </article>
         </div>
       </div>
     </section>
@@ -140,6 +228,15 @@
     </section>
   </main>
 
+
+  <div class="modal" id="committee-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-panel" tabindex="-1">
+      <button class="modal-close" data-close aria-label="Close details"><span></span><span></span></button>
+      <div class="modal-body"></div>
+    </div>
+  </div>
+
   <footer>
     <div class="wrap">
       <div class="top">
@@ -161,6 +258,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
-  <script src="main.js?v=4"></script>
+  <script src="main.js?v=5"></script>
 </body>
 </html>

@@ -332,6 +332,55 @@
   fitWordmark();
   let rz; window.addEventListener("resize", () => { clearTimeout(rz); rz = setTimeout(fitWordmark, 150); });
 
+  /* ---------- Committee pop-ups ---------- */
+  const modal = document.getElementById("committee-modal");
+  if (modal) {
+    const panel = modal.querySelector(".modal-panel"), body = modal.querySelector(".modal-body"), backdrop = modal.querySelector(".modal-backdrop");
+    let lastCard = null, closing = false;
+    const open = (card) => {
+      lastCard = card;
+      body.innerHTML = "";
+      body.appendChild(card.querySelector("template.committee-details").content.cloneNode(true));
+      const title = body.querySelector(".m-name"); if (title) title.id = "modal-title";
+      body.querySelectorAll("[data-guide]").forEach((g) => g.addEventListener("click", (e) => {
+        if (g.getAttribute("href") === "#") { e.preventDefault(); g.textContent = "Background guide coming soon"; }
+      }));
+      modal.hidden = false; root.classList.add("modal-open"); if (lenis) lenis.stop();
+      panel.scrollTop = 0; panel.focus();
+      if (motion) {
+        const r = card.getBoundingClientRect(), pr = panel.getBoundingClientRect();
+        G.timeline()
+          .fromTo(backdrop, { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.out" }, 0)
+          .fromTo(panel, { x: r.left + r.width / 2 - (pr.left + pr.width / 2), y: r.top + r.height / 2 - (pr.top + pr.height / 2), scale: Math.max(0.3, r.width / pr.width), opacity: 0 },
+            { x: 0, y: 0, scale: 1, opacity: 1, duration: 0.8, ease: "expo.out" }, 0)
+          .from(body.children, { y: 24, opacity: 0, duration: 0.6, ease: "power3.out", stagger: 0.05 }, 0.25);
+      }
+    };
+    const close = () => {
+      if (modal.hidden || closing) return;
+      const done = () => { modal.hidden = true; closing = false; root.classList.remove("modal-open"); if (lenis) lenis.start(); if (lastCard) lastCard.focus({ preventScroll: true }); };
+      if (!motion) return done();
+      closing = true;
+      G.timeline({ onComplete: done })
+        .to(panel, { y: 40, scale: 0.94, opacity: 0, duration: 0.4, ease: "power3.in" }, 0)
+        .to(backdrop, { opacity: 0, duration: 0.45, ease: "power2.in" }, 0.05);
+    };
+    document.querySelectorAll(".committee").forEach((card) => {
+      card.addEventListener("click", () => open(card));
+      card.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(card); } });
+    });
+    modal.querySelectorAll("[data-close]").forEach((el) => el.addEventListener("click", close));
+    document.addEventListener("keydown", (e) => {
+      if (modal.hidden) return;
+      if (e.key === "Escape") close();
+      if (e.key === "Tab") { // keep keyboard focus inside the pop-up
+        const f = [...panel.querySelectorAll("a[href], button")]; if (!f.length) return;
+        if (e.shiftKey && document.activeElement === f[0]) { e.preventDefault(); f[f.length - 1].focus(); }
+        else if (!e.shiftKey && document.activeElement === f[f.length - 1]) { e.preventDefault(); f[0].focus(); }
+      }
+    });
+  }
+
   const y = document.querySelector("[data-year]");
   if (y) y.textContent = new Date().getFullYear();
   // Recalculate scroll positions once, after fonts and the footer size are final
