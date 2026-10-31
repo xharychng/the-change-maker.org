@@ -328,7 +328,7 @@
   /* ---------- Pop-ups (committee details + application forms) ---------- */
   const modal = document.querySelector(".modal");
   if (modal) {
-    const panel = modal.querySelector(".modal-panel"), body = modal.querySelector(".modal-body"), backdrop = modal.querySelector(".modal-backdrop");
+    const panel = modal.querySelector(".modal-panel"), scroller = modal.querySelector(".modal-scroll"), body = modal.querySelector(".modal-body"), backdrop = modal.querySelector(".modal-backdrop");
     let lastOrigin = null, closing = false;
 
     const openModal = (fragment, origin) => {
@@ -338,7 +338,7 @@
       const title = body.querySelector(".m-name"); if (title) title.id = "modal-title";
       body.querySelectorAll("[data-close]").forEach((el) => el.addEventListener("click", closeModal));
       modal.hidden = false; root.classList.add("modal-open"); if (lenis) lenis.stop();
-      panel.scrollTop = 0; panel.focus();
+      scroller.scrollTop = 0; panel.focus();
       if (motion) {
         const r = origin.getBoundingClientRect(), pr = panel.getBoundingClientRect();
         G.timeline()
@@ -428,7 +428,7 @@
           store.del(key);
           done.querySelector("[data-name]").textContent = form.elements["Full name"].value.split(" ")[0];
           done.querySelector("[data-email]").textContent = form.elements["Email"].value;
-          form.hidden = true; done.hidden = false; panel.scrollTop = 0;
+          form.hidden = true; done.hidden = false; scroller.scrollTop = 0;
           if (motion) {
             const path = done.querySelector(".check path"), circ = done.querySelector(".check circle");
             [path, circ].forEach((s) => { const l = s.getTotalLength(); s.style.strokeDasharray = l; s.style.strokeDashoffset = l; });
