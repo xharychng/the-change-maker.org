@@ -301,16 +301,55 @@
   }
   if (countdowns.length) { const tick = () => countdowns.forEach(render); tick(); setInterval(tick, 1000); }
 
-  /* ---------- Registration status from data-deadline ---------- */
-  document.querySelectorAll("[data-deadline]").forEach((role) => {
-    const left = new Date(role.dataset.deadline).getTime() - Date.now();
-    const status = role.querySelector(".status"), btn = role.querySelector(".apply"), cd = role.querySelector(".countdown");
-    if (left <= 0) {
-      status.textContent = "Applications closed"; status.classList.add("closed");
-      if (btn) { btn.setAttribute("aria-disabled", "true"); btn.disabled = true; btn.textContent = "Applications closed"; }
-      if (cd) cd.remove();
-    } else status.textContent = left < 7 * 864e5 ? "Closing soon" : "Applications open";
-  });
+  /* ---------- Registration status: opens → (regular → late) → closed ---------- */
+  const fmt = (d) => d.toLocaleDateString("en-US", { month: "long", day: "numeric", timeZone: "Asia/Taipei" });
+  function updateRoles() {
+    const now = Date.now();
+    document.querySelectorAll("[data-deadline]").forEach((role) => {
+      const status = role.querySelector(".status"), btn = role.querySelector(".apply"),
+            cd = role.querySelector(".countdown"), label = role.querySelector(".phase-label");
+      const opens = role.dataset.opens ? new Date(role.dataset.opens) : null;
+      const regular = role.dataset.regular ? new Date(role.dataset.regular) : null;
+      const end = new Date(role.dataset.deadline);
+      if (btn && !btn.dataset.label) btn.dataset.label = btn.textContent;
+      const setBtn = (enabled, text) => {
+        if (!btn) return;
+        btn.disabled = !enabled;
+        if (enabled) btn.removeAttribute("aria-disabled"); else btn.setAttribute("aria-disabled", "true");
+        btn.textContent = text || btn.dataset.label;
+      };
+      const setCountdown = (iso) => { if (cd && cd.dataset.countdown !== iso) { cd.dataset.countdown = iso; render(cd); } };
+      const setLabel = (html) => { if (label) label.innerHTML = html; };
+      status.classList.remove("closed");
+      cd && (cd.hidden = false);
+
+      if (opens && now < opens) {
+        status.textContent = "Opens " + fmt(opens);
+        setLabel("Registration opens in");
+        setCountdown(role.dataset.opens);
+        setBtn(false, "Opens " + fmt(opens));
+      } else if (now >= end) {
+        status.textContent = "Applications closed"; status.classList.add("closed");
+        setLabel(""); if (cd) cd.hidden = true;
+        setBtn(false, "Applications closed");
+      } else if (regular && now < regular) {
+        status.textContent = (regular - now < 7 * 864e5) ? "Regular registration closing soon" : "Regular registration open";
+        setLabel("Regular registration closes in");
+        setCountdown(role.dataset.regular);
+        setBtn(true);
+      } else if (regular) {
+        status.textContent = "Late registration open";
+        setLabel("Late registration closes in");
+        setCountdown(role.dataset.deadline);
+        setBtn(true, "Register late as a delegate");
+      } else {
+        status.textContent = (end - now < 7 * 864e5) ? "Closing soon" : "Applications open";
+        setBtn(true);
+      }
+    });
+  }
+  updateRoles();
+  setInterval(updateRoles, 30000);
 
   /* ---------- Footer wordmark fills the width exactly ---------- */
   const wm = document.querySelector(".wordmark");

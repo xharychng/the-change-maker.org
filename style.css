@@ -302,3 +302,9 @@ html.modal-open{overflow:hidden}
 .form-done .m-actions{justify-content:center}
 .btn:disabled{opacity:.45;cursor:not-allowed}
 @media (max-width:640px){.apply-form .fields{grid-template-columns:1fr}.modal{padding:12px}.modal-panel{max-height:calc(100svh - 24px);border-radius:26px}}
+
+/* Delegate registration periods */
+.role .periods{display:grid;gap:10px;margin:16px 0 6px;padding:14px 0;border-block:1px solid var(--line)}
+.role .periods dt{font-size:.85rem;color:var(--mist)}
+.role .periods dd{font-weight:700;color:var(--paper)}
+.role .phase-label:empty{display:none}
