@@ -30,9 +30,9 @@ a{color:inherit}
 ::selection{background:var(--brass);color:var(--ink)}
 
 /* ===== Film grain ===== */
-body::before{content:"";position:fixed;inset:-50%;z-index:90;pointer-events:none;opacity:.07;
+body::before{content:"";position:fixed;inset:0;z-index:90;pointer-events:none;opacity:.07;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  animation:grain 1.2s steps(6) infinite}
+}
 @keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-3%,2%)}40%{transform:translate(2%,-3%)}60%{transform:translate(-2%,-1%)}80%{transform:translate(3%,3%)}100%{transform:translate(0,0)}}
 
 /* ===== Type ===== */
@@ -62,8 +62,8 @@ h3{font-weight:700;font-size:clamp(1.5rem,2.6vw,2.2rem)}
 .progress{position:fixed;top:0;left:0;height:3px;width:100%;background:var(--brass);transform-origin:0 50%;transform:scaleX(0);z-index:60}
 
 /* ===== Nav ===== */
-.nav{position:fixed;inset:0 0 auto 0;z-index:50;transition:background .4s,backdrop-filter .4s,border-color .4s;border-bottom:1px solid transparent}
-.nav.scrolled{background:rgba(15,26,69,.78);backdrop-filter:blur(14px);border-color:var(--line)}
+.nav{position:fixed;inset:0 0 auto 0;z-index:50;transition:background .4s,border-color .4s;border-bottom:1px solid transparent}
+.nav.scrolled{background:rgba(15,26,69,.94);border-color:var(--line)}
 .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:84px}
 .brand{display:inline-flex;align-items:center;gap:12px;font-family:var(--serif);font-weight:800;font-size:clamp(1.25rem,2vw,1.6rem);text-decoration:none;letter-spacing:-.01em}
 .mark{display:grid;place-items:center;width:46px;height:46px;border-radius:50%;background:var(--brass);color:var(--ink);font-family:var(--serif);font-weight:900;font-size:1.05rem;letter-spacing:-.03em;flex:none;transition:transform .6s var(--ease)}
@@ -96,17 +96,17 @@ h3{font-weight:700;font-size:clamp(1.5rem,2.6vw,2.2rem)}
 /* ===== Hero ===== */
 .hero{position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden;padding:140px 0 90px}
 .hero .wrap{position:relative;z-index:3;width:100%}
-.hero h1{font-size:clamp(4rem,13.5vw,12.5rem);line-height:.86;letter-spacing:-.04em;max-width:9ch}
+.hero h1{will-change:transform,opacity;font-size:clamp(4rem,13.5vw,12.5rem);line-height:.86;letter-spacing:-.04em;max-width:9ch}
 .hero h1 .char{display:inline-block;will-change:transform,filter;transform-origin:50% 100%}
 .hero .lead{margin-top:32px}
 .hero-sub{font-size:clamp(3.6rem,11vw,10rem)!important;max-width:12ch!important}
 .aurora{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
-.aurora span{position:absolute;border-radius:50%;filter:blur(90px);opacity:.55}
-.aurora .a1{width:46vw;height:46vw;background:radial-gradient(circle,rgba(91,95,214,.75),transparent 65%);left:-10vw;top:-12vw}
-.aurora .a2{width:38vw;height:38vw;background:radial-gradient(circle,rgba(200,162,90,.45),transparent 65%);right:5vw;bottom:-14vw}
-.aurora .a3{width:28vw;height:28vw;background:radial-gradient(circle,rgba(120,140,255,.35),transparent 65%);left:40vw;top:30%}
+.aurora span{position:absolute;border-radius:50%;opacity:.55;will-change:transform}
+.aurora .a1{width:46vw;height:46vw;background:radial-gradient(circle,rgba(91,95,214,.6),rgba(91,95,214,.18) 40%,transparent 70%);left:-10vw;top:-12vw}
+.aurora .a2{width:38vw;height:38vw;background:radial-gradient(circle,rgba(200,162,90,.35),rgba(200,162,90,.1) 40%,transparent 70%);right:5vw;bottom:-14vw}
+.aurora .a3{width:28vw;height:28vw;background:radial-gradient(circle,rgba(120,140,255,.3),rgba(120,140,255,.08) 40%,transparent 70%);left:40vw;top:30%}
 .globe{position:absolute;z-index:1;right:-10vw;top:50%;width:min(80vw,960px);aspect-ratio:1;transform:translateY(-50%);pointer-events:none}
-.globe svg{width:100%;height:100%;overflow:visible}
+.globe svg{width:100%;height:100%;overflow:visible;will-change:transform}
 .globe ellipse,.globe circle,.globe line{fill:none;stroke:var(--brass);stroke-width:.7;opacity:.5}
 .hero::after{content:"";position:absolute;inset:auto 0 0 0;height:28%;background:linear-gradient(transparent,var(--ink));z-index:2}
 @media (max-width:760px){.globe{right:-50vw;width:125vw;opacity:.55}}
@@ -242,4 +242,4 @@ footer small{color:var(--mist)}
   body::before{display:none}
 }
 
-@media (max-width:760px){.hero h1{font-size:19vw}.hero-sub{font-size:16vw!important}h2{font-size:13vw}}
+@media (max-width:760px){.hero h1{will-change:transform,opacity;font-size:19vw}.hero-sub{font-size:16vw!important}h2{font-size:13vw}}

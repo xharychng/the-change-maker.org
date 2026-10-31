@@ -13,7 +13,12 @@
   let lenis = null;
   if (motion && typeof window.Lenis !== "undefined") {
     lenis = new Lenis({ duration: 1.25, smoothWheel: true, wheelMultiplier: 0.95 });
-    if (ST) lenis.on("scroll", ScrollTrigger.update);
+    if (ST) {
+      lenis.on("scroll", ScrollTrigger.update);
+      // ScrollTrigger briefly resets scroll to measure pins; tell Lenis afterwards so it never snaps back to the top
+      ScrollTrigger.addEventListener("refreshInit", () => lenis.stop());
+      ScrollTrigger.addEventListener("refresh", () => { lenis.resize(); lenis.start(); });
+    }
     G.ticker.add((t) => lenis.raf(t * 1000));
     G.ticker.lagSmoothing(0);
   }
@@ -113,12 +118,14 @@
     const shapes = globe.querySelectorAll("ellipse, circle, line");
     shapes.forEach((s) => { const l = s.getTotalLength(); s.style.strokeDasharray = l; s.style.strokeDashoffset = l; });
     heroIn.to(shapes, { strokeDashoffset: 0, duration: 2.4, ease: "power3.inOut", stagger: 0.06 }, 0.1);
-    G.to(globe.querySelector(".spin"), { rotate: 360, transformOrigin: "50% 50%", duration: 160, repeat: -1, ease: "none" });
+    window.__globeSpin = G.to(globe, { rotation: 360, transformOrigin: "50% 50%", duration: 160, repeat: -1, ease: "none", force3D: true });
+    heroIn.eventCallback("onComplete", () => shapes.forEach((s) => { s.style.strokeDasharray = ""; s.style.strokeDashoffset = ""; }));
   }
 
   // Aurora color fields drift on their own
+  const ambient = [];
   if (motion) document.querySelectorAll(".aurora span").forEach((s, i) => {
-    G.to(s, { x: () => G.utils.random(-120, 120), y: () => G.utils.random(-90, 90), scale: () => G.utils.random(0.85, 1.25),
+    ambient[ambient.length] = G.to(s, { x: () => G.utils.random(-120, 120), y: () => G.utils.random(-90, 90), scale: () => G.utils.random(0.85, 1.25),
       duration: 9 + i * 2, ease: "sine.inOut", repeat: -1, yoyo: true, repeatRefresh: true });
   });
 
@@ -139,10 +146,19 @@
 
   // Hero title spreads and fades as you scroll away
   if (heroTitle && motion && ST) {
-    G.to(heroTitle, { yPercent: -35, opacity: 0, letterSpacing: "0.04em", ease: "none",
+    G.to(heroTitle, { yPercent: -35, opacity: 0, scale: 1.04, ease: "none", force3D: true,
       scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
     if (document.querySelector(".globe")) G.to(".globe", { yPercent: -25, rotate: 18, ease: "none",
       scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
+  }
+
+  // Pause the hero's looping effects while the hero is off-screen
+  if (motion && ST && hero) {
+    ScrollTrigger.create({ trigger: hero, start: "top bottom", end: "bottom top",
+      onToggle: (self) => {
+        const list = ambient.concat(window.__globeSpin ? [window.__globeSpin] : []);
+        list.forEach((t) => (self.isActive ? t.resume() : t.pause()));
+      } });
   }
 
   // Run intro, then hero entrance
@@ -167,15 +183,16 @@
   /* ---------- Marquee reacts to scroll speed and direction ---------- */
   const track = document.querySelector(".marquee-track");
   if (track && motion) {
-    const loop = G.to(track, { xPercent: -50, duration: 28, ease: "none", repeat: -1 });
+    const loop = G.to(track, { xPercent: -50, duration: 28, ease: "none", repeat: -1, force3D: true });
     loop.totalTime(loop.duration() * 50);
-    let dir = 1;
-    if (lenis) lenis.on("scroll", (e) => {
-      if (e.direction) dir = e.direction;
-      const boost = 1 + Math.min(Math.abs(e.velocity) / 6, 5);
-      G.to(loop, { timeScale: dir * boost, duration: 0.25, overwrite: true,
-        onComplete: () => G.to(loop, { timeScale: dir, duration: 1.2, ease: "power2.out" }) });
+    let dir = 1, target = 1, current = 1;
+    if (lenis) lenis.on("scroll", (e) => { if (e.direction) dir = e.direction; target = dir * (1 + Math.min(Math.abs(e.velocity) / 6, 5)); });
+    G.ticker.add(() => {
+      target += (dir - target) * 0.04;           // ease back to normal speed
+      current += (target - current) * 0.12;      // follow smoothly
+      loop.timeScale(current);
     });
+    if (ST) ScrollTrigger.create({ trigger: ".marquee", start: "top bottom", end: "bottom top", onToggle: (s) => (s.isActive ? loop.resume() : loop.pause()) });
   }
 
   /* ---------- What we do rows ---------- */
@@ -203,7 +220,6 @@
       const t = G.to(row, { x: () => -dist(), ease: "none",
         scrollTrigger: { trigger: hs, start: "top top", end: () => "+=" + dist(), pin: true, scrub: 1, invalidateOnRefresh: true } });
       G.from(row.children, { y: 80, opacity: 0, rotate: 3, duration: 1, ease: "expo.out", stagger: 0.08, scrollTrigger: { trigger: hs, start: "top 70%" } });
-      ScrollTrigger.refresh();
       return () => { hs.classList.remove("is-horizontal"); t.kill(); };
     });
     mm.add("(max-width: 899px)", () => {
@@ -324,10 +340,15 @@
     wm.style.fontSize = (size * avail / wm.scrollWidth) * 0.99 + "px";
   }
   fitWordmark();
-  if (document.fonts) document.fonts.ready.then(fitWordmark);
-  window.addEventListener("resize", fitWordmark);
+  let rz; window.addEventListener("resize", () => { clearTimeout(rz); rz = setTimeout(fitWordmark, 150); });
 
   const y = document.querySelector("[data-year]");
   if (y) y.textContent = new Date().getFullYear();
-  if (ST) window.addEventListener("load", () => ScrollTrigger.refresh());
+  // Recalculate scroll positions once, after fonts and the footer size are final
+  if (ST) {
+    let done = false;
+    const finalRefresh = () => { if (done) return; done = true; fitWordmark(); ScrollTrigger.refresh(); };
+    Promise.all([document.fonts ? document.fonts.ready : null, new Promise((r) => document.readyState === "complete" ? r() : window.addEventListener("load", r))])
+      .then(finalRefresh);
+  }
 })();
