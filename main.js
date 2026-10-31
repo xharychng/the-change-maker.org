@@ -209,22 +209,12 @@
       scrollTrigger: { trigger: ".team", start: "top 80%" } });
   }
 
-  /* ---------- Committees: horizontal scroll on desktop ---------- */
-  const hs = document.querySelector(".h-scroll");
-  if (hs && motion && ST) {
-    const mm = G.matchMedia();
-    mm.add("(min-width: 900px)", () => {
-      hs.classList.add("is-horizontal");
-      const row = hs.querySelector(".committees");
-      const dist = () => Math.max(0, row.scrollWidth - hs.querySelector(".wrap").clientWidth + 60);
-      const t = G.to(row, { x: () => -dist(), ease: "none",
-        scrollTrigger: { trigger: hs, start: "top top", end: () => "+=" + dist(), pin: true, scrub: 1, invalidateOnRefresh: true } });
-      G.from(row.children, { y: 80, opacity: 0, rotate: 3, duration: 1, ease: "expo.out", stagger: 0.08, scrollTrigger: { trigger: hs, start: "top 70%" } });
-      return () => { hs.classList.remove("is-horizontal"); t.kill(); };
-    });
-    mm.add("(max-width: 899px)", () => {
-      G.from(".committee", { y: 60, opacity: 0, duration: 1, ease: "expo.out", stagger: 0.1, scrollTrigger: { trigger: ".committees", start: "top 85%" } });
-    });
+  /* ---------- Committees: same reveal as the team grid ---------- */
+  if (motion && ST && document.querySelector(".committees")) {
+    G.from(".committee", { clipPath: "inset(100% 0% 0% 0% round 26px)", duration: 1.4, ease: "expo.inOut", stagger: 0.1,
+      scrollTrigger: { trigger: ".committees", start: "top 80%" } });
+    G.from(".committee .abbr, .committee h3, .committee p", { y: 20, opacity: 0, duration: 0.8, ease: "power3.out", stagger: 0.05, delay: 0.5,
+      scrollTrigger: { trigger: ".committees", start: "top 80%" } });
   }
 
   /* ---------- Schedule line fills as you scroll ---------- */

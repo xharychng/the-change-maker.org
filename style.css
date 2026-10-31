@@ -167,17 +167,12 @@ section{padding:clamp(90px,13vw,170px) 0;position:relative}
 .feature .facts strong{color:var(--paper);font-weight:700}
 
 /* Committees — horizontal scroll on desktop */
-.h-scroll{overflow:hidden}
-.committees{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:22px;margin-top:56px}
-.committee{border:1px solid rgba(15,26,69,.14);border-radius:26px;padding:34px;background:#fff;min-height:280px;display:flex;flex-direction:column;justify-content:space-between}
-.committee .abbr{font-family:var(--serif);font-weight:900;font-size:clamp(3rem,5vw,4.4rem);line-height:1;color:var(--ink);letter-spacing:-.03em}
+.committees{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:48px 28px;margin-top:64px}
+.committee{border:1px solid rgba(15,26,69,.14);border-radius:26px;padding:28px;background:#fff;min-height:300px;display:flex;flex-direction:column;justify-content:space-between;container-type:inline-size}
+.committee .abbr{font-family:var(--serif);font-weight:900;font-size:clamp(2rem,22cqi,4.4rem);line-height:1;color:var(--ink);letter-spacing:-.03em}
 .committee h3{font-family:var(--sans);font-size:1.05rem;font-weight:700;margin:18px 0 6px}
 .committee p{color:#4A5584}
 .committee::after{background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(200,162,90,.28),transparent 45%)}
-@media (min-width:900px){
-  .is-horizontal .committees{display:flex;flex-wrap:nowrap;width:max-content}
-  .is-horizontal .committee{width:min(420px,34vw);min-height:360px}
-}
 
 /* Schedule */
 .days{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:56px;margin-top:56px}
