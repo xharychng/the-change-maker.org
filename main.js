@@ -294,6 +294,8 @@
   const pad = (n) => String(n).padStart(2, "0");
   const countdowns = [...document.querySelectorAll("[data-countdown]")];
   function render(el) {
+    if (!el.dataset.countdown) { el.hidden = true; return; }   // no date set yet
+    el.hidden = false;
     const left = Math.max(0, new Date(el.dataset.countdown).getTime() - Date.now());
     const d = Math.floor(left / 864e5), h = Math.floor(left / 36e5) % 24, m = Math.floor(left / 6e4) % 60, s = Math.floor(left / 1e3) % 60;
     el.innerHTML = "<div><b>" + d + "</b><small>days</small></div><div><b>" + pad(h) + "</b><small>hours</small></div>" +

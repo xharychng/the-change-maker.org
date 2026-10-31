@@ -308,3 +308,13 @@ html.modal-open{overflow:hidden}
 .role .periods dt{font-size:.85rem;color:var(--mist)}
 .role .periods dd{font-weight:700;color:var(--paper)}
 .role .phase-label:empty{display:none}
+
+/* Team departments */
+.depts{margin-top:64px;max-width:900px}
+.depts > p{max-width:60ch}
+.depts ul{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:0 40px;margin-top:22px;border-top:1px solid rgba(15,26,69,.16)}
+.depts li{display:flex;flex-direction:column;gap:2px;padding:16px 0;border-bottom:1px solid rgba(15,26,69,.16)}
+.depts b{font-family:var(--serif);font-weight:800;font-size:1.3rem}
+.depts span{color:#4A5584;font-size:.95rem}
+/* Chinese characters in committee marks */
+.committee .abbr:lang(zh),.committee .abbr,.modal-body .m-abbr{font-family:var(--serif),"Noto Serif TC","Songti TC","PMingLiU",serif}
