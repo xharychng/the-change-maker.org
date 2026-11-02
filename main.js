@@ -376,6 +376,8 @@
         setBtn(true, "Register late as a delegate");
       } else {
         status.textContent = (end - now < 7 * 864e5) ? "Closing soon" : "Applications open";
+        setLabel("Applications close in");
+        setCountdown(role.dataset.deadline);
         setBtn(true);
       }
     });
@@ -472,6 +474,18 @@
         const d = {}; [...form.elements].forEach((el) => { if (el.name && el.type !== "hidden" && el.type !== "checkbox" && el.name !== "website") d[el.name] = el.value; });
         store.set(key, d);
       });
+      // Live word counts for essay questions
+      const countWords = (v) => (v.trim().match(/\S+/g) || []).length;
+      const essays = [...form.querySelectorAll("textarea[data-min-words]")];
+      const paintCount = (ta) => {
+        const n = countWords(ta.value), min = +ta.dataset.minWords, max = +ta.dataset.maxWords;
+        const out = ta.parentElement.querySelector(".wc");
+        out.textContent = n + (n === 1 ? " word" : " words") + " · aim for " + min + "–" + max;
+        out.classList.toggle("ok", n >= min && n <= max);
+        out.classList.toggle("over", n > max);
+        ta.setCustomValidity(n === 0 ? "" : (n < min ? "Write at least " + min + " words." : n > max ? "Keep it to " + max + " words or fewer." : ""));
+      };
+      essays.forEach((ta) => { paintCount(ta); ta.addEventListener("input", () => paintCount(ta)); });
       form.addEventListener("input", (e) => { e.target.classList.remove("invalid"); if (e.target.type === "checkbox") e.target.parentElement.classList.remove("invalid"); });
 
       form.addEventListener("submit", async (e) => {
@@ -484,6 +498,7 @@
           const first = bad[0];
           err.textContent = first.type === "checkbox" ? "Tick the confirmation box to submit."
             : first.type === "email" && first.value ? "Enter a valid email address, like name@example.com."
+            : first.dataset && first.dataset.minWords && first.value.trim() ? first.validationMessage.replace(".", "") + " for the highlighted answer."
             : "Fill in the highlighted fields to submit.";
           err.hidden = false; first.focus();
           return;

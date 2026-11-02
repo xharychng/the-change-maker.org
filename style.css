@@ -317,3 +317,8 @@ html.modal-open{overflow:hidden}
 .depts span{color:#4A5584;font-size:.95rem}
 /* Chinese characters in committee marks */
 .committee .abbr:lang(zh),.committee .abbr,.modal-body .m-abbr{font-family:var(--serif),"Noto Serif TC","Songti TC","PMingLiU",serif}
+
+/* Essay word counts */
+.apply-form .wc{font-variant-numeric:tabular-nums}
+.apply-form .wc.ok{color:#9CC8CC}
+.apply-form .wc.over{color:#F2A897}

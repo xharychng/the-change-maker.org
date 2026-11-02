@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Register | CMMUN I</title>
-  <meta name="description" content="Apply to CMMUN I as a Deputy Secretary-General, chair or delegate. Deadlines, eligibility and application forms.">
+  <meta name="description" content="Apply to CMMUN I as a chair, delegate or staff member. Deadlines, eligibility and application forms.">
   <link rel="canonical" href="https://the-change-makers.org/register.html">
   <link rel="icon" type="image/png" sizes="32x32" href="logo/favicon-32.png">
   <link rel="icon" type="image/png" sizes="64x64" href="logo/favicon-64.png">
@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400..900&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=11">
+  <link rel="stylesheet" href="style.css?v=12">
   <script>document.documentElement.classList.add("js");setTimeout(function(){if(!window.gsap){var c=document.querySelector(".curtain");if(c){c.style.transition="transform .8s";c.style.transform="translateY(-101%)";}}},2500);</script>
 
 </head>
@@ -39,11 +39,11 @@
       <div class="aurora" aria-hidden="true"><span class="a1"></span><span class="a2"></span><span class="a3"></span></div>
       <div class="wrap">
         <h1 class="hero-sub" data-split>Join CMMUN</h1>
-        <p class="lead">There are three ways to take part. Check who can apply and the deadline for each, then fill in that position's form.</p>
+        <p class="lead">There are three ways to take part. Check who can apply and when each form is open, then fill in that position's form.</p>
         <div class="actions">
-          <a class="btn btn-ghost" href="#dsg">Deputy Secretary-General</a>
           <a class="btn btn-ghost" href="#chairs">Chairs</a>
           <a class="btn btn-ghost" href="#delegates">Delegates</a>
+          <a class="btn btn-ghost" href="#staff">Staff</a>
         </div>
       </div>
     </section>
@@ -53,78 +53,50 @@
         <!--
           HOW TO EDIT EACH POSITION
           - data-deadline: closing time. Keep +08:00 for Taiwan time. After it passes, the page shows "Applications closed" by itself.
-          - Delegates also have data-opens (registration opens) and data-regular (regular registration closes; late registration runs until data-deadline).
+          - data-opens (optional): when the form unlocks. Before then the page shows "Opens <date>" and a countdown.
           - Change the "Deadline" text to match.
           - Each position's form opens in a pop-up. Answers go to the "CM MUN Applications" Google Sheet.
         -->
 
-        <!-- ===== DEPUTY SECRETARY-GENERAL ===== -->
-        <article class="role spot" id="dsg" data-deadline="2026-11-22T23:59:00+08:00">
-          <span class="big-num" aria-hidden="true">I</span>
-          <div>
-            <span class="status">Applications open</span>
-            <h2>Deputy Secretary&#8209;General</h2>
-            <p class="muted">Join the executive team that builds CMMUN from the ground up, in one of five departments: Academics, Administration, Logistics, Finance, or PR and Design.</p>
-            <p class="deadline">Deadline: <strong>November 22, 2026, 11:59 pm</strong></p>
-            <div class="countdown" data-countdown="2026-11-22T23:59:00+08:00"></div>
-          </div>
-          <div>
-            <h3>Who can apply</h3>
-            <ul>
-              <li>Senior high school students</li>
-              <li>Prior MUN experience as a delegate, chair or staff member</li>
-              <li>Members of our partner schools are welcome to apply</li>
-            </ul>
-            <h3>What to prepare</h3>
-            <ul>
-              <li>A list of the conferences you've attended and your role at each</li>
-              <li>A short statement on which department you want and why</li>
-              <li>Selected applicants join staff training week, November 16 to 22</li>
-            </ul>
-            <button class="btn btn-solid apply" type="button" data-form="dsg" aria-haspopup="dialog">Apply as Deputy Secretary-General</button>
-          </div>
-        </article>
-
         <!-- ===== CHAIRS ===== -->
-        <article class="role spot" id="chairs" data-deadline="2026-12-13T23:59:00+08:00">
-          <span class="big-num" aria-hidden="true">II</span>
+        <article class="role spot" id="chairs" data-deadline="2026-12-07T23:59:00+08:00">
+          <span class="big-num" aria-hidden="true">I</span>
           <div>
             <span class="status">Applications open</span>
             <h2>Chairs</h2>
             <p class="muted">Join a committee's four-person chair team as a co-chair or assistant chair: moderate debate, help write the chair report and background guide, and judge delegates.</p>
-            <p class="deadline">Deadline: <strong>December 13, 2026, 11:59 pm</strong></p>
-            <div class="countdown" data-countdown="2026-12-13T23:59:00+08:00"></div>
+            <p class="deadline">Deadline: <strong>December 7, 2026, 11:59 pm</strong></p>
+            <p class="deadline phase-label"></p>
+            <div class="countdown" data-countdown="2026-12-07T23:59:00+08:00"></div>
           </div>
           <div>
             <h3>Who can apply</h3>
             <ul>
-              <li>Senior high school students</li>
+              <li>Junior high school students and above</li>
               <li>Experience as an MUN delegate; chairing experience helps but isn't required</li>
               <li>We need chairs for both the Chinese and the English committees</li>
             </ul>
             <h3>What to prepare</h3>
             <ul>
-              <li>Your MUN résumé (optional link in the form)</li>
-              <li>Your committee preferences</li>
-              <li>Shortlisted applicants are interviewed in January</li>
+              <li>Your certificate name, exactly as it appears on your passport</li>
+              <li>A list of your MUN conferences and the role you held at each</li>
+              <li>Two short essays: a challenge you'd face as a chair (100–150 words) and how far diplomacy has succeeded this century (200–250 words)</li>
+              <li>Shortlisted applicants receive an email with interview details by December 13</li>
             </ul>
             <button class="btn btn-solid apply" type="button" data-form="chair" aria-haspopup="dialog">Apply as a chair</button>
           </div>
         </article>
 
         <!-- ===== DELEGATES ===== -->
-        <article class="role spot" id="delegates" data-opens="2026-12-13T00:00:00+08:00" data-regular="2027-01-10T23:59:00+08:00" data-deadline="2027-01-24T23:59:00+08:00">
-          <span class="big-num" aria-hidden="true">III</span>
+        <article class="role spot" id="delegates" data-opens="2027-01-01T00:00:00+08:00" data-deadline="2027-03-01T23:59:00+08:00">
+          <span class="big-num" aria-hidden="true">II</span>
           <div>
             <span class="status">Applications open</span>
             <h2>Delegates</h2>
             <p class="muted">Represent a country in committee: debate the topic, negotiate with other delegations and work toward a resolution that passes the vote.</p>
-            <dl class="periods">
-              <div><dt>Regular registration</dt><dd>December 13, 2026 – January 10, 2027</dd></div>
-              <div><dt>Late registration</dt><dd>January 10 – January 24, 2027, 11:59 pm</dd></div>
-            </dl>
+            <p class="deadline">Registration: <strong>January 1 – March 1, 2027, 11:59 pm</strong></p>
             <p class="deadline phase-label"></p>
-            <div class="countdown" data-countdown="2026-12-13T00:00:00+08:00"></div>
+            <div class="countdown" data-countdown="2027-01-01T00:00:00+08:00"></div>
           </div>
           <div>
             <h3>Who can apply</h3>
@@ -142,6 +114,35 @@
             <button class="btn btn-solid apply" type="button" data-form="delegate" aria-haspopup="dialog">Apply as a delegate</button>
           </div>
         </article>
+
+        <!-- ===== STAFF ===== -->
+        <article class="role spot" id="staff" data-opens="2027-01-01T00:00:00+08:00" data-deadline="2027-03-01T23:59:00+08:00">
+          <span class="big-num" aria-hidden="true">III</span>
+          <div>
+            <span class="status">Applications open</span>
+            <h2>Staff</h2>
+            <p class="muted">Keep the conference running from the inside, as a photographer who captures both days or as a pager who carries notes between delegates during sessions. Every staff member earns volunteer service hours.</p>
+            <p class="deadline">Registration: <strong>January 1 – March 1, 2027, 11:59 pm</strong></p>
+            <p class="deadline phase-label"></p>
+            <div class="countdown" data-countdown="2027-01-01T00:00:00+08:00"></div>
+          </div>
+          <div>
+            <h3>Who can apply</h3>
+            <ul>
+              <li>Junior and senior high school students from any school in Taiwan</li>
+              <li>No MUN experience needed</li>
+              <li>Photographers: your own camera helps, but isn't required</li>
+            </ul>
+            <h3>What to prepare</h3>
+            <ul>
+              <li>Your certificate name, exactly as it appears on your passport</li>
+              <li>Which role you want: photographer or pager</li>
+              <li>The conference days you can attend</li>
+              <li>Volunteer service hours are issued after the conference</li>
+            </ul>
+            <button class="btn btn-solid apply" type="button" data-form="staff" aria-haspopup="dialog">Apply as staff</button>
+          </div>
+        </article>
       </div>
     </section>
   </main>
@@ -154,55 +155,26 @@
       <div class="modal-scroll" data-lenis-prevent><div class="modal-body"></div></div>
     </div>
   </div>
-  <template id="form-dsg">
-    <p class="m-kicker">Application</p>
-    <h2 class="m-name">Deputy Secretary-General</h2>
-    <form class="apply-form" novalidate>
-      <input type="hidden" name="role" value="dsg">
-      <div class="hp" aria-hidden="true"><label>Leave this empty<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
-      <div class="fields">
-        <div class="field"><label for="dsg-f0">Full name</label><input id="dsg-f0" type="text" name="Full name" autocomplete="name" required></div>
-        <div class="field"><label for="dsg-f1">Email</label><input id="dsg-f1" type="email" name="Email" autocomplete="email" required></div>
-        <div class="field"><label for="dsg-f2">Phone <span class="opt">(optional)</span></label><input id="dsg-f2" type="tel" name="Phone" autocomplete="tel"></div>
-        <div class="field"><label for="dsg-f3">School</label><input id="dsg-f3" type="text" name="School" autocomplete="organization" required></div>
-        <div class="field"><label for="dsg-f4">Grade</label><select id="dsg-f4" name="Grade" required><option value="">Choose…</option><option>Grade 7</option><option>Grade 8</option><option>Grade 9</option><option>Grade 10</option><option>Grade 11</option><option>Grade 12</option></select></div>
-        <div class="field"><label for="dsg-f5">Conferences attended</label><input id="dsg-f5" type="number" name="Conferences attended" min="0" max="200" inputmode="numeric" required aria-describedby="dsg-f5-hint"><small id="dsg-f5-hint">Total number of MUN conferences</small></div>
-        <div class="field wide"><label for="dsg-f6">MUN experience</label><textarea id="dsg-f6" name="MUN experience" rows="5" maxlength="4000" required aria-describedby="dsg-f6-hint"></textarea><small id="dsg-f6-hint">List conferences and the role you held at each</small></div>
-        <div class="field wide"><label for="dsg-f7">Leadership or secretariat experience</label><textarea id="dsg-f7" name="Leadership or secretariat experience" rows="5" maxlength="4000" required></textarea></div>
-        <div class="field wide"><label for="dsg-f8">Why you want to be DSG</label><textarea id="dsg-f8" name="Why you want to be DSG" rows="5" maxlength="4000" required aria-describedby="dsg-f8-hint"></textarea><small id="dsg-f8-hint">150–250 words</small></div>
-        <div class="field"><label for="dsg-f9">Résumé link <span class="opt">(optional)</span></label><input id="dsg-f9" type="url" name="Résumé link" aria-describedby="dsg-f9-hint"><small id="dsg-f9-hint">Google Drive or PDF link, shared as “anyone with the link”</small></div>
-      </div>
-      <label class="consent"><input type="checkbox" name="consent" required> I confirm these details are accurate and agree to be contacted about CMMUN.</label>
-      <p class="form-error" role="alert" hidden></p>
-      <div class="m-actions"><button class="btn btn-solid" type="submit">Submit application</button></div>
-      <p class="save-note">Your answers are saved on this device until you submit.</p>
-    </form>
-    <div class="form-done" hidden>
-      <svg class="check" viewBox="0 0 52 52" aria-hidden="true"><circle cx="26" cy="26" r="24"/><path d="M15 27l7 7 15-16"/></svg>
-      <h2>Application received</h2>
-      <p>Thanks, <span data-name></span>. We'll contact you at <strong data-email></strong> after the deadline.</p>
-      <div class="m-actions"><button class="btn btn-ghost" type="button" data-close>Close</button></div>
-    </div>
-  </template>
   <template id="form-chair">
     <p class="m-kicker">Application</p>
     <h2 class="m-name">Chair</h2>
     <form class="apply-form" novalidate>
       <input type="hidden" name="role" value="chair">
+      <input type="hidden" name="_fields" value="Full name|Certificate name (passport name)|Email|Phone|School|Grade|Conferences attended|MUN conference experience|Why you want to chair|What might make chairing difficult for you, and how would you work on it?|To what extent has diplomacy succeeded in the 21st century? Support your view with at least one example.|Résumé link">
       <div class="hp" aria-hidden="true"><label>Leave this empty<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
       <div class="fields">
         <div class="field"><label for="chair-f0">Full name</label><input id="chair-f0" type="text" name="Full name" autocomplete="name" required></div>
-        <div class="field"><label for="chair-f1">Email</label><input id="chair-f1" type="email" name="Email" autocomplete="email" required></div>
-        <div class="field"><label for="chair-f2">Phone <span class="opt">(optional)</span></label><input id="chair-f2" type="tel" name="Phone" autocomplete="tel"></div>
-        <div class="field"><label for="chair-f3">School</label><input id="chair-f3" type="text" name="School" autocomplete="organization" required></div>
-        <div class="field"><label for="chair-f4">Grade</label><select id="chair-f4" name="Grade" required><option value="">Choose…</option><option>Grade 7</option><option>Grade 8</option><option>Grade 9</option><option>Grade 10</option><option>Grade 11</option><option>Grade 12</option></select></div>
-        <div class="field"><label for="chair-f5">Conferences attended</label><input id="chair-f5" type="number" name="Conferences attended" min="0" max="200" inputmode="numeric" required aria-describedby="chair-f5-hint"><small id="chair-f5-hint">Total number of MUN conferences</small></div>
-        <div class="field wide"><label for="chair-f6">Chairing experience</label><textarea id="chair-f6" name="Chairing experience" rows="5" maxlength="4000" required aria-describedby="chair-f6-hint"></textarea><small id="chair-f6-hint">Conferences and committees you have chaired, or “None yet”</small></div>
-        <div class="field"><label for="chair-f7">Committee choice 1</label><select id="chair-f7" name="Committee choice 1" required><option value="">Choose…</option><option>Chinese committee</option><option>English committee (beginner)</option><option>English committee (advanced)</option></select></div>
-        <div class="field"><label for="chair-f8">Committee choice 2</label><select id="chair-f8" name="Committee choice 2" required><option value="">Choose…</option><option>Chinese committee</option><option>English committee (beginner)</option><option>English committee (advanced)</option></select></div>
-        <div class="field"><label for="chair-f9">Committee choice 3 <span class="opt">(optional)</span></label><select id="chair-f9" name="Committee choice 3"><option value="">Choose…</option><option>Chinese committee</option><option>English committee (beginner)</option><option>English committee (advanced)</option></select></div>
-        <div class="field wide"><label for="chair-f10">Why you want to chair</label><textarea id="chair-f10" name="Why you want to chair" rows="5" maxlength="4000" required aria-describedby="chair-f10-hint"></textarea><small id="chair-f10-hint">100–200 words</small></div>
-        <div class="field"><label for="chair-f11">Résumé link <span class="opt">(optional)</span></label><input id="chair-f11" type="url" name="Résumé link"></div>
+        <div class="field"><label for="chair-f1">Certificate name (passport name)</label><input id="chair-f1" type="text" name="Certificate name (passport name)" required aria-describedby="chair-f1-hint"><small id="chair-f1-hint">Exactly as it appears on your passport. This is the name printed on your certificate.</small></div>
+        <div class="field"><label for="chair-f2">Email</label><input id="chair-f2" type="email" name="Email" autocomplete="email" required></div>
+        <div class="field"><label for="chair-f3">Phone</label><input id="chair-f3" type="tel" name="Phone" autocomplete="tel" required></div>
+        <div class="field"><label for="chair-f4">School</label><input id="chair-f4" type="text" name="School" autocomplete="organization" required></div>
+        <div class="field"><label for="chair-f5">Grade</label><select id="chair-f5" name="Grade" required><option value="">Choose…</option><option>Grade 7</option><option>Grade 8</option><option>Grade 9</option><option>Grade 10</option><option>Grade 11</option><option>Grade 12</option></select></div>
+        <div class="field"><label for="chair-f6">Conferences attended</label><input id="chair-f6" type="number" name="Conferences attended" min="0" max="200" inputmode="numeric" required aria-describedby="chair-f6-hint"><small id="chair-f6-hint">Total number of MUN conferences</small></div>
+        <div class="field wide"><label for="chair-f7">MUN conference experience</label><textarea id="chair-f7" name="MUN conference experience" rows="5" maxlength="4000" required aria-describedby="chair-f7-hint"></textarea><small id="chair-f7-hint">List each conference, your role (delegate, chair or staff) and any awards.</small></div>
+        <div class="field wide"><label for="chair-f8">Why you want to chair</label><textarea id="chair-f8" name="Why you want to chair" rows="5" maxlength="4000" required></textarea></div>
+        <div class="field wide"><label for="chair-f9">What might make chairing difficult for you, and how would you work on it?</label><textarea id="chair-f9" name="What might make chairing difficult for you, and how would you work on it?" rows="5" maxlength="4000" data-min-words="100" data-max-words="150" required aria-describedby="chair-f9-hint"></textarea><small id="chair-f9-hint" class="wc" aria-live="polite">0 words · aim for 100–150</small></div>
+        <div class="field wide"><label for="chair-f10">To what extent has diplomacy succeeded in the 21st century? Support your view with at least one example.</label><textarea id="chair-f10" name="To what extent has diplomacy succeeded in the 21st century? Support your view with at least one example." rows="7" maxlength="4000" data-min-words="200" data-max-words="250" required aria-describedby="chair-f10-hint"></textarea><small id="chair-f10-hint" class="wc" aria-live="polite">0 words · aim for 200–250</small></div>
+        <div class="field"><label for="chair-f11">Résumé link <span class="opt">(optional)</span></label><input id="chair-f11" type="url" name="Résumé link" aria-describedby="chair-f11-hint"><small id="chair-f11-hint">Google Drive or PDF link, shared as “anyone with the link”</small></div>
       </div>
       <label class="consent"><input type="checkbox" name="consent" required> I confirm these details are accurate and agree to be contacted about CMMUN.</label>
       <p class="form-error" role="alert" hidden></p>
@@ -221,6 +193,7 @@
     <h2 class="m-name">Delegate</h2>
     <form class="apply-form" novalidate>
       <input type="hidden" name="role" value="delegate">
+      <input type="hidden" name="_fields" value="Full name|Email|Phone|School|Grade|MUN experience|Committee choice 1|Committee choice 2|Committee choice 3|Country preferences|Applying as|Delegation name|Anything else we should know">
       <div class="hp" aria-hidden="true"><label>Leave this empty<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
       <div class="fields">
         <div class="field"><label for="delegate-f0">Full name</label><input id="delegate-f0" type="text" name="Full name" autocomplete="name" required></div>
@@ -236,6 +209,38 @@
         <div class="field"><label for="delegate-f10">Applying as</label><select id="delegate-f10" name="Applying as" required><option value="">Choose…</option><option>Single delegate</option><option>Double delegation (with a partner)</option></select></div>
         <div class="field"><label for="delegate-f11">Delegation name <span class="opt">(optional)</span></label><input id="delegate-f11" type="text" name="Delegation name" aria-describedby="delegate-f11-hint"><small id="delegate-f11-hint">Your partner&#x27;s name, if you&#x27;re a double delegation</small></div>
         <div class="field wide"><label for="delegate-f12">Anything else we should know <span class="opt">(optional)</span></label><textarea id="delegate-f12" name="Anything else we should know" rows="5" maxlength="4000"></textarea></div>
+      </div>
+      <label class="consent"><input type="checkbox" name="consent" required> I confirm these details are accurate and agree to be contacted about CMMUN.</label>
+      <p class="form-error" role="alert" hidden></p>
+      <div class="m-actions"><button class="btn btn-solid" type="submit">Submit application</button></div>
+      <p class="save-note">Your answers are saved on this device until you submit.</p>
+    </form>
+    <div class="form-done" hidden>
+      <svg class="check" viewBox="0 0 52 52" aria-hidden="true"><circle cx="26" cy="26" r="24"/><path d="M15 27l7 7 15-16"/></svg>
+      <h2>Application received</h2>
+      <p>Thanks, <span data-name></span>. We'll contact you at <strong data-email></strong> after the deadline.</p>
+      <div class="m-actions"><button class="btn btn-ghost" type="button" data-close>Close</button></div>
+    </div>
+  </template>
+  <template id="form-staff">
+    <p class="m-kicker">Application</p>
+    <h2 class="m-name">Staff</h2>
+    <form class="apply-form" novalidate>
+      <input type="hidden" name="role" value="staff">
+      <input type="hidden" name="_fields" value="Full name|Certificate name (passport name)|Email|Phone|School|Grade|Role|Availability|Relevant experience|Camera equipment|Anything else we should know">
+      <div class="hp" aria-hidden="true"><label>Leave this empty<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+      <div class="fields">
+        <div class="field"><label for="staff-f0">Full name</label><input id="staff-f0" type="text" name="Full name" autocomplete="name" required></div>
+        <div class="field"><label for="staff-f1">Certificate name (passport name)</label><input id="staff-f1" type="text" name="Certificate name (passport name)" required aria-describedby="staff-f1-hint"><small id="staff-f1-hint">Exactly as it appears on your passport. This is the name printed on your certificate.</small></div>
+        <div class="field"><label for="staff-f2">Email</label><input id="staff-f2" type="email" name="Email" autocomplete="email" required></div>
+        <div class="field"><label for="staff-f3">Phone</label><input id="staff-f3" type="tel" name="Phone" autocomplete="tel" required></div>
+        <div class="field"><label for="staff-f4">School</label><input id="staff-f4" type="text" name="School" autocomplete="organization" required></div>
+        <div class="field"><label for="staff-f5">Grade</label><select id="staff-f5" name="Grade" required><option value="">Choose…</option><option>Grade 7</option><option>Grade 8</option><option>Grade 9</option><option>Grade 10</option><option>Grade 11</option><option>Grade 12</option></select></div>
+        <div class="field"><label for="staff-f6">Role</label><select id="staff-f6" name="Role" required aria-describedby="staff-f6-hint"><option value="">Choose…</option><option>Photographer</option><option>Pager</option><option>Either is fine</option></select><small id="staff-f6-hint">Photographers capture the conference; pagers carry notes between delegates during sessions.</small></div>
+        <div class="field"><label for="staff-f7">Availability</label><select id="staff-f7" name="Availability" required><option value="">Choose…</option><option>Both days</option><option>Day 1 only</option><option>Day 2 only</option></select></div>
+        <div class="field wide"><label for="staff-f8">Relevant experience <span class="opt">(optional)</span></label><textarea id="staff-f8" name="Relevant experience" rows="5" maxlength="4000" aria-describedby="staff-f8-hint"></textarea><small id="staff-f8-hint">Photography, MUN or event volunteering. “None yet” is fine.</small></div>
+        <div class="field"><label for="staff-f9">Camera equipment <span class="opt">(optional)</span></label><input id="staff-f9" type="text" name="Camera equipment" aria-describedby="staff-f9-hint"><small id="staff-f9-hint">Photographers only: the camera you&#x27;d bring, if you have one</small></div>
+        <div class="field wide"><label for="staff-f10">Anything else we should know <span class="opt">(optional)</span></label><textarea id="staff-f10" name="Anything else we should know" rows="5" maxlength="4000"></textarea></div>
       </div>
       <label class="consent"><input type="checkbox" name="consent" required> I confirm these details are accurate and agree to be contacted about CMMUN.</label>
       <p class="form-error" role="alert" hidden></p>
@@ -273,6 +278,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
-  <script src="main.js?v=11"></script>
+  <script src="main.js?v=12"></script>
 </body>
 </html>
