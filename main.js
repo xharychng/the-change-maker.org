@@ -259,7 +259,7 @@
   });
 
   /* ---------- Magnetic buttons ---------- */
-  if (motion && fine) document.querySelectorAll(".btn, .mark").forEach((el) => {
+  if (motion && fine) document.querySelectorAll(".btn").forEach((el) => {
     const xTo = G.quickTo(el, "x", { duration: 0.5, ease: "power3" });
     const yTo = G.quickTo(el, "y", { duration: 0.5, ease: "power3" });
     el.addEventListener("mousemove", (e) => {
@@ -268,6 +268,36 @@
       yTo((e.clientY - r.top - r.height / 2) * 0.4);
     });
     el.addEventListener("mouseleave", () => { G.to(el, { x: 0, y: 0, duration: 0.9, ease: "elastic.out(1,0.4)" }); });
+  });
+
+  /* ---------- Logo: spins steadily while hovered, eases to a clean stop on leave ---------- */
+  if (motion) document.querySelectorAll(".brand").forEach((brand) => {
+    const logo = brand.querySelector(".mark");
+    if (!logo) return;
+    G.set(logo, { rotation: 0, transformOrigin: "50% 50%", force3D: true });
+    let spin = null, settle = null;
+    const start = () => {
+      if (settle) { settle.kill(); settle = null; }
+      if (!spin) {
+        const from = G.getProperty(logo, "rotation");          // pick up exactly where it is
+        spin = G.fromTo(logo, { rotation: from }, { rotation: from + 360, duration: 1.6, ease: "none", repeat: -1 });
+        spin.timeScale(0.05);
+      }
+      G.to(spin, { timeScale: 1, duration: 0.4, ease: "power2.out", overwrite: true });   // smooth speed-up
+    };
+    const stop = () => {
+      if (!spin) return;
+      G.killTweensOf(spin);
+      spin.kill(); spin = null;
+      const current = G.getProperty(logo, "rotation");
+      const target = Math.ceil(current / 360) * 360;           // finish the turn instead of snapping back
+      settle = G.to(logo, { rotation: target, duration: Math.max(0.4, (target - current) / 360 * 1.2), ease: "power3.out",
+        onComplete: () => { G.set(logo, { rotation: 0 }); settle = null; } });
+    };
+    brand.addEventListener("pointerenter", start);
+    brand.addEventListener("pointerleave", stop);
+    brand.addEventListener("focus", start);
+    brand.addEventListener("blur", stop);
   });
 
   /* ---------- Custom cursor ---------- */

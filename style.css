@@ -66,8 +66,7 @@ h3{font-weight:700;font-size:clamp(1.5rem,2.6vw,2.2rem)}
 .nav.scrolled{background:rgba(15,26,69,.94);border-color:var(--line)}
 .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:84px}
 .brand{display:inline-flex;align-items:center;gap:12px;font-family:var(--serif);font-weight:800;font-size:clamp(1.25rem,2vw,1.6rem);text-decoration:none;letter-spacing:-.01em}
-.mark{display:block;width:48px;height:48px;border-radius:50%;flex:none;transition:transform .6s var(--ease)}
-.brand:hover .mark{transform:rotate(360deg)}
+.mark{display:block;width:48px;height:48px;border-radius:50%;flex:none}
 .nav ul{list-style:none;display:flex;gap:6px}
 .nav ul a{position:relative;display:block;text-decoration:none;padding:10px 18px;border-radius:999px;color:var(--mist);font-weight:600;font-size:.98rem;transition:color .3s}
 .nav ul a::after{content:"";position:absolute;inset:0;border-radius:999px;background:var(--brass);transform:scale(.6);opacity:0;transition:transform .4s var(--ease),opacity .4s;z-index:-1}
