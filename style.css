@@ -322,3 +322,27 @@ html.modal-open{overflow:hidden}
 .apply-form .wc{font-variant-numeric:tabular-nums}
 .apply-form .wc.ok{color:#9CC8CC}
 .apply-form .wc.over{color:#F2A897}
+
+/* Motto under the tagline */
+.hero .motto{margin-top:14px;font-family:var(--serif);font-style:italic;font-weight:500;font-size:clamp(1.05rem,1.6vw,1.3rem);color:var(--brass-soft);letter-spacing:.01em}
+.hero .motto span{font-weight:800;color:var(--brass)}
+
+/* Nine students */
+.nine{background:var(--ink);overflow:hidden}
+.nine-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(24px,5vw,80px);align-items:center}
+.nine-num{position:relative;font-family:var(--serif);font-weight:900;line-height:.78;font-size:clamp(16rem,38vw,34rem);letter-spacing:-.06em;color:transparent;-webkit-text-stroke:2px var(--brass);text-align:center;user-select:none}
+.nine-num span{display:inline-block;background:linear-gradient(180deg,var(--brass) 0%,var(--brass) var(--fill,0%),transparent var(--fill,0%));-webkit-background-clip:text;background-clip:text}
+.nine-copy h2{max-width:11ch}
+.nine-faces{list-style:none;display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
+.nine-faces a{display:grid;place-items:center;width:56px;height:56px;border-radius:50%;border:1px solid var(--brass);font-family:var(--serif);font-weight:800;font-size:1.3rem;color:var(--paper);text-decoration:none;background:var(--ink-2);transition:background .3s,color .3s,transform .4s var(--ease)}
+.nine-faces a:hover,.nine-faces a:focus-visible{background:var(--brass);color:var(--ink);transform:translateY(-4px)}
+.no-motion .nine-num span{--fill:100%}
+@media (max-width:860px){.nine-grid{grid-template-columns:1fr}.nine-num{font-size:clamp(12rem,60vw,20rem)}}
+
+/* Team cards with intros */
+.team{grid-template-columns:repeat(3,minmax(0,1fr));gap:56px 40px;max-width:1040px}
+.member .portrait{aspect-ratio:1/1}
+@media (max-width:900px){.team{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.team{grid-template-columns:1fr;max-width:340px}}
+.member .position{font-weight:700;font-size:.95rem;color:#4A5584;margin-top:2px}
+.member .bio{font-size:.92rem;margin-top:8px;line-height:1.55}

@@ -109,7 +109,7 @@
   if (heroTitle && motion) {
     const chars = splitChars(heroTitle);
     heroIn.from(chars, { yPercent: 120, rotateX: -95, opacity: 0, filter: "blur(14px)", duration: 1.3, ease: "expo.out", stagger: 0.045 })
-      .from(".hero .lead, .hero .actions, .hero .countdown, .scroll-cue", { y: 40, opacity: 0, duration: 1.1, ease: "power4.out", stagger: 0.12 }, "-=0.9");
+      .from(".hero .lead, .hero .motto, .hero .actions, .hero .countdown, .scroll-cue", { y: 40, opacity: 0, duration: 1.1, ease: "power4.out", stagger: 0.12 }, "-=0.9");
   }
 
   // Globe draws itself, then turns slowly
@@ -193,6 +193,19 @@
       loop.timeScale(current);
     });
     if (ST) ScrollTrigger.create({ trigger: ".marquee", start: "top bottom", end: "bottom top", onToggle: (s) => (s.isActive ? loop.resume() : loop.pause()) });
+  }
+
+  /* ---------- Nine students: count up to 9, the numeral fills, the nine faces arrive one by one ---------- */
+  const nine = document.querySelector(".nine");
+  if (nine && motion && ST) {
+    const num = nine.querySelector("[data-count]"), faces = nine.querySelectorAll(".nine-faces li");
+    const counter = { v: 1 };
+    num.textContent = "1";
+    G.timeline({ scrollTrigger: { trigger: nine, start: "top 65%" } })
+      .to(counter, { v: 9, duration: 1.6, ease: "power2.inOut", onUpdate: () => { num.textContent = Math.round(counter.v); } }, 0)
+      .fromTo(num, { "--fill": "0%" }, { "--fill": "100%", duration: 1.8, ease: "power2.inOut" }, 0.2)
+      .from(faces, { scale: 0, opacity: 0, duration: 0.5, ease: "back.out(2)", stagger: 1.6 / 9 }, 0);
+    G.to(".nine-num", { yPercent: -12, ease: "none", scrollTrigger: { trigger: nine, start: "top bottom", end: "bottom top", scrub: true } });
   }
 
   /* ---------- What we do rows ---------- */
