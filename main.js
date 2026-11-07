@@ -546,6 +546,23 @@
     }));
   }
 
+  /* ---------- Footer email bubble: copy button, tap-to-open on touch screens ---------- */
+  document.querySelectorAll(".copy-email").forEach((btn) => btn.addEventListener("click", async (e) => {
+    e.preventDefault();
+    const email = btn.dataset.email;
+    try { await navigator.clipboard.writeText(email); }
+    catch (err) {
+      const t = document.createElement("textarea"); t.value = email; t.style.position = "fixed"; t.style.opacity = "0";
+      document.body.appendChild(t); t.select(); try { document.execCommand("copy"); } catch (e2) {} t.remove();
+    }
+    btn.textContent = "Copied"; setTimeout(() => (btn.textContent = "Copy"), 1600);
+  }));
+  if (!fine) document.querySelectorAll(".email-wrap").forEach((wrap) => {
+    const link = wrap.querySelector(".email-link");
+    link.addEventListener("click", (e) => { if (!wrap.classList.contains("open")) { e.preventDefault(); wrap.classList.add("open"); } });
+    document.addEventListener("click", (e) => { if (!wrap.contains(e.target)) wrap.classList.remove("open"); });
+  });
+
   const y = document.querySelector("[data-year]");
   if (y) y.textContent = new Date().getFullYear();
   // Recalculate scroll positions once, after fonts and the footer size are final
