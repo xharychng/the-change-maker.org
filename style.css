@@ -346,3 +346,13 @@ html.modal-open{overflow:hidden}
 @media (max-width:520px){.team{grid-template-columns:1fr;max-width:340px}}
 .member .position{font-weight:700;font-size:.95rem;color:#4A5584;margin-top:2px}
 .member .bio{font-size:.92rem;margin-top:8px;line-height:1.55}
+
+/* Email bubble in the footer */
+.email-wrap{position:relative;display:inline-block}
+.email-bubble{position:absolute;left:50%;bottom:calc(100% + 14px);transform:translate(-50%,6px);display:flex;align-items:center;gap:10px;white-space:nowrap;padding:10px 10px 10px 16px;border-radius:999px;background:var(--paper);color:var(--ink);font-size:.9rem;font-weight:600;box-shadow:0 14px 34px -12px rgba(0,0,0,.55);opacity:0;visibility:hidden;transition:opacity .25s,transform .35s var(--ease),visibility .25s;z-index:20}
+.email-bubble::after{content:"";position:absolute;left:50%;top:100%;transform:translateX(-50%);border:7px solid transparent;border-top-color:var(--paper)}
+.email-bubble::before{content:"";position:absolute;left:0;right:0;top:100%;height:16px}
+.email-wrap:hover .email-bubble,.email-wrap:focus-within .email-bubble,.email-wrap.open .email-bubble{opacity:1;visibility:visible;transform:translate(-50%,0)}
+.copy-email{font:inherit;font-size:.8rem;font-weight:700;border:0;border-radius:999px;padding:6px 12px;background:var(--brass);color:var(--ink);cursor:pointer;transition:background .2s}
+.copy-email:hover{background:var(--brass-soft)}
+@media (max-width:600px){.email-bubble{left:0;transform:translate(0,6px)}.email-wrap:hover .email-bubble,.email-wrap:focus-within .email-bubble,.email-wrap.open .email-bubble{transform:translate(0,0)}.email-bubble::after{left:28px}}
