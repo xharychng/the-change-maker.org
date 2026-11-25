@@ -356,3 +356,14 @@ html.modal-open{overflow:hidden}
 .copy-email{font:inherit;font-size:.8rem;font-weight:700;border:0;border-radius:999px;padding:6px 12px;background:var(--brass);color:var(--ink);cursor:pointer;transition:background .2s}
 .copy-email:hover{background:var(--brass-soft)}
 @media (max-width:600px){.email-bubble{left:0;transform:translate(0,6px)}.email-wrap:hover .email-bubble,.email-wrap:focus-within .email-bubble,.email-wrap.open .email-bubble{transform:translate(0,0)}.email-bubble::after{left:28px}}
+
+/* Nov 25 updates */
+.hero .motto{margin-top:22px;font-size:clamp(1.6rem,3.2vw,2.6rem);line-height:1.2}
+.nine-num{font-size:clamp(11rem,26vw,24rem);letter-spacing:-.08em}
+@media (max-width:860px){.nine-num{font-size:clamp(9rem,44vw,16rem)}}
+.team{grid-template-columns:repeat(5,minmax(0,1fr));gap:48px 28px;max-width:none}
+.member h3{font-size:1.25rem}
+@media (max-width:1100px){.team{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:760px){.team{grid-template-columns:repeat(2,minmax(0,1fr));max-width:none}}
+.day h3 .day-date{display:block;font-family:var(--sans);font-size:1rem;font-weight:700;letter-spacing:0;color:var(--brass-soft);margin-top:8px}
+.nine-copy h2{max-width:none;font-size:clamp(2.8rem,5.4vw,5rem)}

@@ -195,16 +195,16 @@
     if (ST) ScrollTrigger.create({ trigger: ".marquee", start: "top bottom", end: "bottom top", onToggle: (s) => (s.isActive ? loop.resume() : loop.pause()) });
   }
 
-  /* ---------- Nine students: count up to 9, the numeral fills, the nine faces arrive one by one ---------- */
+  /* ---------- Ten students: count up to 10, the numeral fills, the faces arrive one by one ---------- */
   const nine = document.querySelector(".nine");
   if (nine && motion && ST) {
     const num = nine.querySelector("[data-count]"), faces = nine.querySelectorAll(".nine-faces li");
     const counter = { v: 1 };
     num.textContent = "1";
     G.timeline({ scrollTrigger: { trigger: nine, start: "top 65%" } })
-      .to(counter, { v: 9, duration: 1.6, ease: "power2.inOut", onUpdate: () => { num.textContent = Math.round(counter.v); } }, 0)
+      .to(counter, { v: 10, duration: 1.6, ease: "power2.inOut", onUpdate: () => { num.textContent = Math.round(counter.v); } }, 0)
       .fromTo(num, { "--fill": "0%" }, { "--fill": "100%", duration: 1.8, ease: "power2.inOut" }, 0.2)
-      .from(faces, { scale: 0, opacity: 0, duration: 0.5, ease: "back.out(2)", stagger: 1.6 / 9 }, 0);
+      .from(faces, { scale: 0, opacity: 0, duration: 0.5, ease: "back.out(2)", stagger: 1.6 / faces.length }, 0);
     G.to(".nine-num", { yPercent: -12, ease: "none", scrollTrigger: { trigger: nine, start: "top bottom", end: "bottom top", scrub: true } });
   }
 
@@ -355,7 +355,7 @@
             cd = role.querySelector(".countdown"), label = role.querySelector(".phase-label");
       const opens = role.dataset.opens ? new Date(role.dataset.opens) : null;
       const regular = role.dataset.regular ? new Date(role.dataset.regular) : null;
-      const end = new Date(role.dataset.deadline);
+      const end = role.dataset.deadline ? new Date(role.dataset.deadline) : Infinity;   // empty = deadline to be announced
       if (btn && !btn.dataset.label) btn.dataset.label = btn.textContent;
       const setBtn = (enabled, text) => {
         if (!btn) return;
@@ -375,7 +375,7 @@
         setBtn(false, "Opens " + fmt(opens));
       } else if (now >= end) {
         status.textContent = "Applications closed"; status.classList.add("closed");
-        setLabel(""); if (cd) cd.hidden = true;
+        setLabel(""); setCountdown("");
         setBtn(false, "Applications closed");
       } else if (regular && now < regular) {
         status.textContent = (regular - now < 7 * 864e5) ? "Regular registration closing soon" : "Regular registration open";
@@ -387,6 +387,11 @@
         setLabel("Late registration closes in");
         setCountdown(role.dataset.deadline);
         setBtn(true, "Register late as a delegate");
+      } else if (end === Infinity) {
+        status.textContent = "Applications open";
+        setLabel("");
+        setCountdown("");                                   // no closing date yet: hide the countdown
+        setBtn(true);
       } else {
         status.textContent = (end - now < 7 * 864e5) ? "Closing soon" : "Applications open";
         setLabel("Applications close in");

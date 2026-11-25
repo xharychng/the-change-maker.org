@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400..900&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=14">
+  <link rel="stylesheet" href="style.css?v=16">
   <script>document.documentElement.classList.add("js");setTimeout(function(){if(!window.gsap){var c=document.querySelector(".curtain");if(c){c.style.transition="transform .8s";c.style.transform="translateY(-101%)";}}},2500);</script>
 
 </head>
@@ -59,15 +59,15 @@
         -->
 
         <!-- ===== CHAIRS ===== -->
-        <article class="role spot" id="chairs" data-deadline="2026-12-07T23:59:00+08:00">
+        <article class="role spot" id="chairs" data-deadline="2026-12-13T23:59:00+08:00">
           <span class="big-num" aria-hidden="true">I</span>
           <div>
             <span class="status">Applications open</span>
             <h2>Chairs</h2>
             <p class="muted">Join a committee's four-person chair team as a co-chair or assistant chair: moderate debate, help write the chair report and background guide, and judge delegates.</p>
-            <p class="deadline">Deadline: <strong>December 7, 2026, 11:59 pm</strong></p>
+            <p class="deadline">Deadline: <strong>December 13, 2026, 11:59 pm</strong></p>
             <p class="deadline phase-label"></p>
-            <div class="countdown" data-countdown="2026-12-07T23:59:00+08:00"></div>
+            <div class="countdown" data-countdown="2026-12-13T23:59:00+08:00"></div>
           </div>
           <div>
             <h3>Who can apply</h3>
@@ -81,22 +81,23 @@
               <li>Your certificate name, exactly as it appears on your passport</li>
               <li>A list of your MUN conferences and the role you held at each</li>
               <li>Two short essays: a challenge you'd face as a chair (100–150 words) and how far diplomacy has succeeded this century (200–250 words)</li>
-              <li>Shortlisted applicants receive an email with interview details by December 13</li>
+              <li>Shortlisted applicants receive an email with interview details after the deadline</li>
             </ul>
             <button class="btn btn-solid apply" type="button" data-form="chair" aria-haspopup="dialog">Apply as a chair</button>
           </div>
         </article>
 
         <!-- ===== DELEGATES ===== -->
-        <article class="role spot" id="delegates" data-opens="2027-01-01T00:00:00+08:00" data-deadline="2027-03-01T23:59:00+08:00">
+        <article class="role spot" id="delegates" data-opens="2026-12-21T00:00:00+08:00" data-deadline="">
           <span class="big-num" aria-hidden="true">II</span>
           <div>
             <span class="status">Applications open</span>
             <h2>Delegates</h2>
             <p class="muted">Represent a country in committee: debate the topic, negotiate with other delegations and work toward a resolution that passes the vote.</p>
-            <p class="deadline">Registration: <strong>January 1 – March 1, 2027, 11:59 pm</strong></p>
+            <p class="deadline">Registration opens: <strong>December 21, 2026</strong></p>
+            <p class="deadline">Deadline: <strong>To be announced</strong></p>
             <p class="deadline phase-label"></p>
-            <div class="countdown" data-countdown="2027-01-01T00:00:00+08:00"></div>
+            <div class="countdown" data-countdown="2026-12-21T00:00:00+08:00"></div>
           </div>
           <div>
             <h3>Who can apply</h3>
@@ -122,9 +123,10 @@
             <span class="status">Applications open</span>
             <h2>Staff</h2>
             <p class="muted">Keep the conference running from the inside, as a photographer who captures both days or as a pager who carries notes between delegates during sessions. Every staff member earns volunteer service hours.</p>
-            <p class="deadline">Registration: <strong>January 1 – March 1, 2027, 11:59 pm</strong></p>
+            <p class="deadline">Registration opens: <strong>December 21, 2026</strong></p>
+            <p class="deadline">Deadline: <strong>To be announced</strong></p>
             <p class="deadline phase-label"></p>
-            <div class="countdown" data-countdown="2027-01-01T00:00:00+08:00"></div>
+            <div class="countdown" data-countdown="2026-12-21T00:00:00+08:00"></div>
           </div>
           <div>
             <h3>Who can apply</h3>
@@ -237,7 +239,7 @@
         <div class="field"><label for="staff-f4">School</label><input id="staff-f4" type="text" name="School" autocomplete="organization" required></div>
         <div class="field"><label for="staff-f5">Grade</label><select id="staff-f5" name="Grade" required><option value="">Choose…</option><option>Grade 7</option><option>Grade 8</option><option>Grade 9</option><option>Grade 10</option><option>Grade 11</option><option>Grade 12</option></select></div>
         <div class="field"><label for="staff-f6">Role</label><select id="staff-f6" name="Role" required aria-describedby="staff-f6-hint"><option value="">Choose…</option><option>Photographer</option><option>Pager</option><option>Either is fine</option></select><small id="staff-f6-hint">Photographers capture the conference; pagers carry notes between delegates during sessions.</small></div>
-        <div class="field"><label for="staff-f7">Availability</label><select id="staff-f7" name="Availability" required><option value="">Choose…</option><option>Both days</option><option>Day 1 only</option><option>Day 2 only</option></select></div>
+        <div class="field"><label for="staff-f7">Availability</label><select id="staff-f7" name="Availability" required><option value="">Choose…</option><option>Both days (March 6–7)</option><option>Day 1 only (March 6)</option><option>Day 2 only (March 7)</option></select></div>
         <div class="field wide"><label for="staff-f8">Relevant experience <span class="opt">(optional)</span></label><textarea id="staff-f8" name="Relevant experience" rows="5" maxlength="4000" aria-describedby="staff-f8-hint"></textarea><small id="staff-f8-hint">Photography, MUN or event volunteering. “None yet” is fine.</small></div>
         <div class="field"><label for="staff-f9">Camera equipment <span class="opt">(optional)</span></label><input id="staff-f9" type="text" name="Camera equipment" aria-describedby="staff-f9-hint"><small id="staff-f9-hint">Photographers only: the camera you&#x27;d bring, if you have one</small></div>
         <div class="field wide"><label for="staff-f10">Anything else we should know <span class="opt">(optional)</span></label><textarea id="staff-f10" name="Anything else we should know" rows="5" maxlength="4000"></textarea></div>
@@ -281,6 +283,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
-  <script src="main.js?v=14"></script>
+  <script src="main.js?v=16"></script>
 </body>
 </html>
